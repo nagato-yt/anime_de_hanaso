@@ -1,0 +1,12 @@
+<% if post.favorited_by?(current_user) %>
+ <%= link_to public_post_favorites_path, method: :delete do %>
+   <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+   <%= post.favorites.count %> いいね
+   <% end %>
+<%else%>
+ <%= link_to public_post_favorites_path, method: :post do %>
+  <%= post.favorites.count %> いいね
+  <% end %>
+<% end %>  
+   
+ 

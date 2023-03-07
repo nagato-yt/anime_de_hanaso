@@ -1,0 +1,31 @@
+<h1>Public::Users#index</h1>
+<div class="container">
+    <div class="row">
+        <div class="row">
+            
+            <table class="table">
+                <thead>
+                    <th>name</th>
+                    <th>email</th>
+                </thead>
+                <tbody>
+                 <% @users.each do |user| %>
+                    <tr>
+                        <td><%= user.name %></td>
+                        <td><%= user.email %></td>
+                        <td><%= link_to '詳細', public_user_path(user) %></td>
+                    </tr>
+                 <%end%>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-3">
+            <div>
+                <%= link_to '投稿へ', public_posts_path, class: "btn btn-success" %>
+            </div>
+            <div>
+              <%= link_to 'トップページへ', root_path %>
+          </div>
+        </div>
+    </div>
+</div>

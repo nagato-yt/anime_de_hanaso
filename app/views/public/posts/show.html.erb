@@ -1,0 +1,36 @@
+<h1>Public::Posts#show</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <table class="table">
+                <tr>
+                    <td><%= @post.title %></td>
+                    <td><%= @post.body %></td>
+                    <td><%= @post.user.name %></td>
+                    <td>
+                        <% if @post.favorited_by?(current_user) %>
+                         <%= link_to public_post_favorites_path(@post), method: :delete do %>
+                           <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                           <%= @post.favorites.count %> いいね
+                           <% end %>
+                        <%else%>
+                         <%= link_to public_post_favorites_path(@post), method: :post do %>
+                         <i class="fas fa-heart" aria-hidden="true"></i>
+                          <%= @post.favorites.count %> いいね
+                          <% end %>
+                        <% end %>  
+                           
+ 
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <%= link_to '投稿一覧へ', public_posts_path, class: "btn btn-success" %>
+        </div>
+        <div>
+            <%= link_to 'ユーザー一覧へ', public_users_path, class: "btn btn-dark" %>
+        </div>
+        
+    </div>
+</div>

@@ -1,20 +1,23 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'post_comments/index'
-    get 'post_comments/show'
-  end
+ 
   root to: 'public/homes#top'
   
   namespace :public do
       resources :posts do
-          resources :post_comments, only: [:create, :destroy]
-          resource :favorites, only: [:create, :destroy]
+          resources :post_comments, only: [:create, :destroy, :index, :show]
+          resources :favorites, only: [:index]
+           resource :favorites, only: [:create, :destroy]
       end
-      resources :favorites, only: [:index]
+      
       resources :users do
+          resource :relationships, only: [:create, :destroy]
+          get 'followings' => 'relationships#followings', as: 'followings'
+          get 'folloers' => 'relationships#followers', as: 'followers'
+          
           member do
               get :favorites
           end
+          
       end
       
   end

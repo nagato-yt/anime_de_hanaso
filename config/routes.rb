@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'post_comments/index'
+    get 'post_comments/show'
+  end
   root to: 'public/homes#top'
   
   namespace :public do
       resources :posts do
+          resources :post_comments, only: [:create, :destroy]
           resource :favorites, only: [:create, :destroy]
       end
       resources :favorites, only: [:index]

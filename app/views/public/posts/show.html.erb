@@ -1,0 +1,52 @@
+<h1>Public::Posts#show</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <table class="table">
+                <tr>
+                    <td><%= @post.title %></td>
+                    <td><%= @post.body %></td>
+                    <td><%= @post.user.name %></td>
+                    <td>コメント数 <%= @post.post_comments.count %></td>
+                    <td>
+                        <%= render "public/favorites/btn", post: @post %>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table">
+                <% @post.post_comments.each do |post_comment| %>
+                <tr>
+                    <td><%= post_comment.user.name %></td>
+                    <td><%= post_comment.comment %></td>
+                    <td>
+                        <% if post_comment.user == current_user %>
+                         <%= link_to '削除',public_post_post_comment_path(post_comment),method: :delete %>
+                        <% end %>
+                    </td>
+                        
+                </tr>
+                <% end %>
+            </table>
+        </div>
+        
+        
+    </div>
+     <div class="row">
+            <div>
+                <%= form_with model:[@post,@post_comment],url: public_post_post_comments_path(@post),method: :post do |f| %>
+                <%= f.text_area :comment,rows:'5',placeholder: "コメントをここに" %>
+                <%= f.submit "送信" %>
+                <% end %>
+            </div>
+     </div>
+     <div class="row">
+         <div>
+            <%= link_to '投稿一覧へ', public_posts_path, class: "btn btn-success" %>
+        </div>
+        <div>
+            <%= link_to 'ユーザー一覧へ', public_users_path, class: "btn btn-dark" %>
+        </div>
+     </div>
+</div>

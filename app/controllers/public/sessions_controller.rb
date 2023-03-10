@@ -26,9 +26,7 @@ class Public::SessionsController < Devise::SessionsController
   # end
   
   def guest_sign_in
-    find_or_create_by(email: 'guest@example.com') do |user|
-        user.password = SecureRandom.urlsafe_base64
-      end
+    user= User.guest
     sign_in user
     redirect_to root_path, notice: 'ゲストログインしました。'
   end

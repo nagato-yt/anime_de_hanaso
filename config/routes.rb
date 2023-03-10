@@ -17,8 +17,8 @@ Rails.application.routes.draw do
           member do
               get :favorites
           end
-          
       end
+      resources :chats, only: [:show, :create]
       
   end
  # 顧客用

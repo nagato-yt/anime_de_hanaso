@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
  
   root to: 'public/homes#top'
-  
+ 
   namespace :public do
-      resources :posts do
+      resources :posts, only: [:index,:show,:create] do
           resources :post_comments, only: [:create, :destroy, :index, :show]
           resources :favorites, only: [:index]
            resource :favorites, only: [:create, :destroy]
+           
       end
       
       resources :users do
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
           end
       end
       resources :chats, only: [:show, :create]
-      
+       get '/posts/hashtag/:name', to: "posts#hashtag"
   end
  # 顧客用
  devise_for :users,skip: [:passwords], controllers: {

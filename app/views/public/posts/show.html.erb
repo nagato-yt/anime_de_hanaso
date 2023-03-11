@@ -5,7 +5,7 @@
             <table class="table">
                 <tr>
                     <td><%= @post.title %></td>
-                    <td><%= @post.body %></td>
+                    <td><%= render_with_hashtags(@post.body) %></td>
                     <td><%= @post.user.name %></td>
                     <td>コメント数 <%= @post.post_comments.count %></td>
                     <td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_10_115542) do
+ActiveRecord::Schema.define(version: 2023_03_11_133433) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +37,21 @@ ActiveRecord::Schema.define(version: 2023_03_10_115542) do
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string "hashname"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "hashtags_posts", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "hashtag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hashtag_id"], name: "index_hashtags_posts_on_hashtag_id"
+    t.index ["post_id"], name: "index_hashtags_posts_on_post_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -87,4 +102,6 @@ ActiveRecord::Schema.define(version: 2023_03_10_115542) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "hashtags_posts", "hashtags"
+  add_foreign_key "hashtags_posts", "posts"
 end

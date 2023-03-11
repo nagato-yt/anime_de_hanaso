@@ -10,8 +10,7 @@ class Public::PostsController < ApplicationController
     
   end
 
-  def edit
-  end
+ 
   
   def create
     @post= Post.new(post_params)
@@ -19,6 +18,16 @@ class Public::PostsController < ApplicationController
     @post.save
     redirect_to request.referer
   end
+  
+  def hashtag
+    @user  = current_user
+    @tag   = Hashtag.find_by(hashname: params[:name])
+    @posts = @tag.posts.build
+    @post  = @tag.posts.page(params[:page])
+    @comment = PostComment.new
+    @commens = @posts.comments
+  end
+    
   
   private
   def post_params

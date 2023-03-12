@@ -1,7 +1,11 @@
 class Public::PostsController < ApplicationController
   def index
-    @post= Post.new    
-    @posts= Post.all
+    @post  = Post.new    
+    @posts = Post.all
+    
+    #検索
+    @q     = Post.ransack(params[:q])
+    @q_posts= @q.result(distinct: true)
   end
 
   def show

@@ -7,7 +7,9 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @users=User.all
+    @users = User.all
+    @q     = User.ransack(params[:q])
+    @q_users = @q.result(distinct: true)
   end
   
   def favorites

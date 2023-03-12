@@ -3,9 +3,18 @@ class Public::PostsController < ApplicationController
     @post  = Post.new    
     @posts = Post.all
     
+    
     #検索
     @q     = Post.ransack(params[:q])
     @q_posts= @q.result(distinct: true)
+    
+    if params[:tag_ids]
+      @posts = []
+      params[:tag_ids].each do |key, value|
+        @posts += Tag.find_by(name: key).posts if value == "1"
+      end
+      @posts.uniq!
+    end
   end
 
   def show
@@ -26,6 +35,6 @@ class Public::PostsController < ApplicationController
   
   private
   def post_params
-    params.require(:post).permit(:title,:body)
+    params.require(:post).permit(:title,:body, tag_ids: [])
   end
 end

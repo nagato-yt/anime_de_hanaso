@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
- 
   root to: 'public/homes#top'
   
   namespace :public do
@@ -21,6 +20,17 @@ Rails.application.routes.draw do
       resources :chats, only: [:show, :create]
       
   end
+  
+  namespace :admin do
+   root to: 'homes#top'
+   
+    resources :tags, only: [:index, :create, :edit, :update]
+   
+  end
+  
+  
+  
+  
  # 顧客用
  devise_for :users,skip: [:passwords], controllers: {
    registrations: "public/registrations",

@@ -13,6 +13,7 @@ class User < ApplicationRecord
     has_many :rooms, through: :user_rooms
     # グループ機能
     has_many :group_users
+    has_many :groups, through: :group_users
     
 
     # フォローをした、されたの関係

@@ -9,6 +9,9 @@
                 <%= @group.introduction %>
             </div>
             <div>
+                <%= link_to '一覧へ', public_groups_path %>
+            </div>
+            <div>
                 <% if current_user.id == @group.owner_id %>
                     <%= link_to '編集する', edit_public_group_path(@group) %>
                 <% end %>

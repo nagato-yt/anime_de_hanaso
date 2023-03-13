@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        
+        <h2>タグ一覧</h2>
+    </div>
+    <div class="row">
+        <div class="col">
+            <%= form_with model: @tag, url: admin_tags_path, method: :post do |f| %>
+              <%= f.label :name, 'タグ名' %>
+              <%= f.text_field :name, class: 'form-control' %>
+              <%= f.submit '作成', class: 'btn btn-success btn-sm' %>
+            <% end %>
+        </div>
+    </div>
+    <div class="col">
+            <table class= "table">
+                <thead>
+                    <th>Name</th>
+                </thead>
+                <tbody>
+                    <% @tags.each do |tag| %>
+                    <tr>
+                        <td><%= tag.name %></td>
+                        <td><%= link_to '編集', edit_admin_tag_path(tag) %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+    </div>
+     <%= link_to "Top", admin_root_path %>
+</div>

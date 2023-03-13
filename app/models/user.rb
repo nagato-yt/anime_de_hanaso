@@ -41,4 +41,13 @@ class User < ApplicationRecord
       user.name = "太宰 治"
     end
    end
+   
+   def self.ransackable_attributes(auth_object = nil)
+    ["email","name"]
+   end
+   
+    def self.ransackable_associations(auth_object = nil)
+    ["chats", "favorites", "followers", "followings", "post_comments", "posts", "relationships", "reverse_of_relationships", "rooms", "user_rooms"]
+  end
+  
 end

@@ -1,0 +1,29 @@
+<h1>Admin::Posts#show</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <table class="table">
+                <tr>
+                    <td><%= @post.title %></td>
+                    <td>
+                        <%= @post.body %>
+                        <% @post.tags.each do |tag| %>
+                            <span><%= tag.name %></span>
+                        <% end %>
+                    </td>
+                    <td><%= @post.user.name %></td>
+                    <td>コメント数 <%= @post.post_comments.count %></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table">
+                <% @post.post_comments.each do |post_comment| %>
+                <tr>
+                    <td><%= post_comment.user.name %></td>
+                    <td><%= post_comment.comment %></td>
+                    <td><%= link_to '削除',public_post_post_comment_path(post_comment),method: :delete %></td>
+                </tr>
+                <% end %>
+            </table>
+        </div>

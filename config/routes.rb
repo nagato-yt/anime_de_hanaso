@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  root to: 'public/homes#top'
-  
+    root to: 'public/homes#top'
+    
+    namespace :admin do
+       
+    end
+    
   namespace :public do
       resources :posts do
           resources :post_comments, only: [:create, :destroy, :index, :show]
@@ -25,7 +29,9 @@ Rails.application.routes.draw do
    root to: 'homes#top'
    
     resources :tags, only: [:index, :create, :edit, :update]
-   
+    resources :users, only: [:index,:show,:destroy]
+    resources :posts, only: [:index,:show, :destroy]
+    resources :groups, only: [:index,:show, :destroy]
   end
   
   

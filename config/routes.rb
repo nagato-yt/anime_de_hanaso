@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
     root to: 'public/homes#top'
     
-    namespace :admin do
-       
-    end
+   
     
   namespace :public do
       resources :posts do
@@ -22,6 +20,7 @@ Rails.application.routes.draw do
           end
       end
       resources :chats, only: [:show, :create]
+      resources :groups, except: [:destroy]
       
   end
   

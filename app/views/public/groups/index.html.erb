@@ -1,0 +1,26 @@
+<h1>Public::Groups#index</h1>
+<div class="container">
+    <div class="col">
+        <div><%=link_to "グループを作成する",new_public_group_path %></div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <th>グループ名</th>
+                <th>グループ紹介</th>
+            </thead>
+            <tbody>
+                <% @groups.each do |group| %>
+                <tr>
+                    <td><%= group.name %></td>
+                    <td><%= group.introduction %></td>
+                    <td><%= group.owner_id %></td>
+                    <!--<td>%= group.owner_id.user.name %></td>-->
+                    <!--<td>%= group.user.count %></td>-->
+                    <td><%= link_to 'もっと詳しく',public_group_path(group) %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

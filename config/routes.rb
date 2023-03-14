@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'group_messages/index'
+  end
     root to: 'public/homes#top'
     
    
@@ -23,8 +26,8 @@ Rails.application.routes.draw do
       resources :groups do
        get "join" => "groups#join"
        delete "all_destroy" => "groups#all_destroy"
+       resources :group_messages, only: [:index, :create, :destroy]
       end
-      
   end
   
   namespace :admin do

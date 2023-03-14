@@ -34,6 +34,7 @@
                     <% else %>
                     <td><%= link_to 'Join this group', public_group_join_path(@group), class: "btn btn-sm btn-success" %></td>
                     <% end %>
+                    <td><%= link_to 'チャットを始める', public_group_group_messages_path(@group), class: "btn btn-outline-info" %></td>
                   </tr>
                 </tbody>
            </table>

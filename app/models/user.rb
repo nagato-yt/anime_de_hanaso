@@ -15,6 +15,7 @@ class User < ApplicationRecord
     has_many :group_users, dependent: :destroy
     has_many :groups, through: :group_users, dependent: :destroy
     has_many :owned_groups, class_name: "Group"
+    has_many :group_messages, dependent: :destroy
     
 
     # フォローをした、されたの関係

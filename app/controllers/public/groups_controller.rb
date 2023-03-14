@@ -21,8 +21,11 @@ class Public::GroupsController < ApplicationController
       @group = Group.new(group_params)
       @group.owner_id = current_user.id
       @group.users << current_user
-      @group.save
-      redirect_to public_groups_path
+        if @group.save
+          redirect_to public_groups_path
+        else
+          render 'new'
+        end
     end
     
     def update
@@ -32,6 +35,26 @@ class Public::GroupsController < ApplicationController
         render "edit"
       end
     end
+    
+    def join
+      @group = Group.find(params[:group_id])
+      @group.users << current_user
+      redirect_to public_groups_path
+    end
+    
+    def destroy
+      @group = Group.find(params[:id])
+      @group.users.delete(current_user)
+      redirect_to public_groups_path
+    end
+    
+    def all_destroy
+      @group = Group.find(params[:group_id])
+      if @group.destroy
+        redirect_to public_groups_path
+      end
+    end
+    
     
   private
     def group_params
@@ -44,5 +67,4 @@ class Public::GroupsController < ApplicationController
         redirect_to public_groups_path
       end
     end
-    
 end

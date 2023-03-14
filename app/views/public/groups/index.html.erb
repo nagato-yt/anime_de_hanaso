@@ -14,8 +14,8 @@
                 <tr>
                     <td><%= group.name %></td>
                     <td><%= group.introduction %></td>
-                    <!--<td>%= group.owner_id.user.name %></td>-->
-                    <!--<td>%= group.user.count %></td>-->
+                    <td><%= group.owner_id %></td>
+                    <td><%= group.users.count %></td>
                     <td><%= link_to '詳細',public_group_path(group) %></td>
                 </tr>
                 <% end %>

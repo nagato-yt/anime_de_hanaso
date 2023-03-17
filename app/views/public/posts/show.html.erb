@@ -16,6 +16,11 @@
                     <td>
                         <%= render "public/favorites/btn", post: @post %>
                     </td>
+                    <td>
+                        <% if @post.user == current_user %>
+                            <%= link_to '投稿削除', public_post_path(@post), method: :delete %>
+                        <% end %>
+                    </td>
                 </tr>
             </table>
         </div>

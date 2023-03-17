@@ -1,17 +1,22 @@
 <div class="container">
-    <h2 class="text-center mt-5">チャットグループ一覧</h2>
-    <div class="row mt-5">
-        <div class="col-sm-12 col-md-8 col-lg-4 px-5 px-sm-0 mx-auto">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-4 px-5 px-sm-0 mx-auto mt-5">
+            <h2 class="text-center mt-5">みんなの投稿</h2>
+                <div class=" mt-5 d-flex flex-warp flex-column justify-content-center">
+                    <div class="scroll">
+                        <%= render 'layouts/post_card', post: @post %>
+                    </div>
+                </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-4 px-5 px-sm-0 mx-auto mt-5">
+            <h2 class="text-center mt-5">チャットルーム</h2>
             <div class=" mt-5 d-flex flex-warp flex-column justify-content-center">
                 <div class="scroll">
                     <%= render 'public/groups/group_index' %>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 px-5 px-sm-0 mx-auto">
-            <div class="visible-lg sidebar_fixed">
-                <%= render 'public/groups/group_new', group: @group %>
-            </div>
+        <div class= " col-lg-2 justify-content-center d-none d-lg-block mt-5">
             <div class="visible-lg sidebar_fixed">
                 <div  onselectstart="return false;" onmousedown="return false;"><%= image_tag 'egao' %></div>
                 <div  onselectstart="return false;" onmousedown="return false;"><%= image_tag 'yobikake'%></div>
@@ -20,3 +25,5 @@
         </div>
     </div>
 </div>
+
+

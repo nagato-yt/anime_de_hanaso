@@ -26,8 +26,8 @@ Rails.application.routes.draw do
       resources :groups do
        get "join" => "groups#join"
        delete "all_destroy" => "groups#all_destroy"
-       resources :group_messages, only: [:index, :create, :destroy]
       end
+      resources :group_messages, only: [:index, :create]
   end
   
   namespace :admin do

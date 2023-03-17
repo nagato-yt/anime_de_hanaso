@@ -1,0 +1,39 @@
+
+<table class='table table-borderless'>
+  <!--<tr>%= image_tag user.get_profile_image, size:'100x100' %></tr>-->
+  <tr>
+    <th>ニックネーム</th>
+    <th><%= user.name %></th>
+  </tr>
+  <tr>
+    <th>自己紹介</th>
+    <th><%= user.introduction %></th>
+  </tr>
+  <tr>
+    <th>フォロー</th>
+    <th><%= link_to user.followings.count, public_user_followings_path(user) %></th>
+  </tr>
+  <tr>
+    <th>フォロワー</th>
+    <th><%= link_to user.followers.count, public_user_followers_path(user) %></th>
+  </tr>
+</table>
+<div>
+   <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
+     <%= link_to  public_chat_path(user.id), class: "ml-3" do %>
+       <i class="fas fa-envelope"></i>chatを始める
+     <% end %>
+   <% end %>
+</div>
+    
+　
+<div class='row mb-5'>
+  <% if current_user != user %>
+    <td><%= render "public/relationships/btn", user: user %></td>
+  <% elsif current_user == User.guest %>
+  <% else %>
+    <%= link_to 'ユーザー情報編集', edit_user_registration_path(user), class: "btn btn-outline-info btn-block edit_user_#{user.id}" %>
+    <%= link_to 'かんたんプロフィール編集', edit_public_user_path(user), class: "btn btn-outline-info btn-block" %>
+  <% end %>
+</div>
+        

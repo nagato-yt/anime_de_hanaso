@@ -48,6 +48,12 @@ class User < ApplicationRecord
     end
    end
    
+   def ensure_normal_user
+     resource.email == 'dazai_osamu@example.com'
+     resource.name == '太宰 治'
+   end
+   
+   #ransuck
    def self.ransackable_attributes(auth_object = nil)
     ["email","name"]
    end

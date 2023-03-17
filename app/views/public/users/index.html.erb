@@ -1,49 +1,18 @@
-<h1>Public::Users#index</h1>
 <div class="container">
+   <h2 class="text-center mt-5">アニメ好きの人々</h2>
     <div class="row">
-        <div class="row">
-            
-            <table class="table">
-                <thead>
-                    <th>name</th>
-                    <th>email</th>
-                </thead>
-                <tbody>
-                 <% @users.each do |user| %>
-                    <tr>
-                        <td><%= user.name %></td>
-                        <td><%= user.email %></td>
-                        <td><%= link_to '詳細', public_user_path(user) %></td>
-                    </tr>
-                 <%end%>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-3">
-            <div>
-                <%= link_to '投稿へ', public_posts_path, class: "btn btn-success" %>
+        <div class="col-lg-3 d-none d-lg-block mt-5">
+            <div class="visible-lg sidebar_fixed">
+                <%= render 'public/users/user_info', user: current_user %>
             </div>
-            <div>
-              <%= link_to 'トップページへ', root_path %>
-          </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto mt-5">
+            <div class="card-deck d-flex flex-warp flex-column justify-content-center">
+                <div class="scroll">
+                    <%= render 'public/users/user_card', users: @users %>
+                </div>
+                
+            </div>
         </div>
     </div>
-    <div class="row">
-       <%= search_form_for @q, url: public_users_path do |f| %>
-          <%= f.label :name_or_email, "キーワード" %>
-          <%= f.search_field :name_or_email_cont %>
-         
-          <%= f.submit "検索" %>
-       <% end %>
-       
-       <table>
-           <% @q_users.each do |user| %>
-           <tr>
-               <td><%= user.name %></td>
-               <td><%= user.email %></td>
-           </tr>
-           <% end %>
-       </table>
-    </div>
-    
 </div>

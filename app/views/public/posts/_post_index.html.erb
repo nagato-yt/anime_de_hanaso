@@ -10,10 +10,10 @@
             </h5>
             <p class="card-text"><%= post.body %></p>
            <div class="row justify-content-end">
-               <div class="col-2">
+               <div class="col-sm col-md col-lg-2">
                    <%= link_to '詳細へ', public_post_path(post), class: "btn btn-primary" %>
                </div>
-               <div class="col-2">
+               <div class="col-sm col-md col-lg-2">
                    <%= render "public/favorites/btn", post: post %>
                </div>
            </div>   

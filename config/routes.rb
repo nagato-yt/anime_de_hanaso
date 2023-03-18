@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'group_messages/index'
-  end
     root to: 'public/homes#top'
     
    
@@ -21,22 +18,36 @@ Rails.application.routes.draw do
           member do
               get :favorites
           end
+          # 退会機能
+          get 'users/:id/unsubscribe' =>'users#unsubscribe', as: 'unsubscribe'
+          patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+          
       end
       resources :chats, only: [:show, :create]
       resources :groups do
        get "join" => "groups#join"
        delete "all_destroy" => "groups#all_destroy"
+       resources :group_messages, only: [:index, :create]
       end
-      resources :group_messages, only: [:index, :create]
   end
   
   namespace :admin do
    root to: 'homes#top'
    
     resources :tags, only: [:index, :create, :edit, :update]
-    resources :users, only: [:index,:show,:destroy]
-    resources :posts, only: [:index,:show, :destroy]
-    resources :groups, only: [:index,:show, :destroy]
+    resources :users, only: [:index,:show,:destroy] do
+     # 退会機能
+      get 'users/:id/unsubscribe' =>'users#unsubscribe', as: 'unsubscribe'
+      patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+    end
+    resources :posts, only: [:index,:show, :destroy] do 
+     resources :post_comments, only: [:index,:show, :destroy]
+    end
+    resources :groups, only: [:index,:show, :destroy] do
+       get "join" => "groups#join"
+       delete "all_destroy" => "groups#all_destroy"
+        resources :group_messages, only: [:index, :create]
+    end
   end
   
   

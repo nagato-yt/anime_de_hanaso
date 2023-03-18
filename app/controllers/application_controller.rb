@@ -1,8 +1,15 @@
 class ApplicationController < ActionController::Base
-    before_action :authenticate_user!, except: [:top]
     before_action :configure_permitted_parameters, if: :devise_controller?
-     
+     before_action :authenticate_any!, except: [:top]
   private
+  
+    def authenticate_any!
+      if user_signed_in?
+          true
+      else
+          authenticate_admin!
+      end
+    end
 
   
     def after_sign_in_path_for(resource_or_scope)

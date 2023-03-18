@@ -61,6 +61,11 @@ class User < ApplicationRecord
     def self.ransackable_associations(auth_object = nil)
     ["chats", "favorites", "followers", "followings", "post_comments", "posts", "relationships", "reverse_of_relationships", "rooms", "user_rooms"]
     end
+    
+    
+    def active_for_authentication?
+      super && (is_deleted == false)
+    end
   
   
 end

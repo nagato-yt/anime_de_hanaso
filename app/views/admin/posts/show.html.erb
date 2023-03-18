@@ -1,29 +1,47 @@
-<h1>Admin::Posts#show</h1>
 <div class="container">
     <div class="row">
-        <div class="col-4">
-            <table class="table">
-                <tr>
-                    <td><%= @post.title %></td>
-                    <td>
-                        <%= @post.body %>
-                        <% @post.tags.each do |tag| %>
-                            <span><%= tag.name %></span>
-                        <% end %>
-                    </td>
-                    <td><%= @post.user.name %></td>
-                    <td>コメント数 <%= @post.post_comments.count %></td>
-                </tr>
-            </table>
-        </div>
         <div class="col">
-            <table class="table">
-                <% @post.post_comments.each do |post_comment| %>
-                <tr>
-                    <td><%= post_comment.user.name %></td>
-                    <td><%= post_comment.comment %></td>
-                    <td><%= link_to '削除',public_post_post_comment_path(post_comment),method: :delete %></td>
-                </tr>
-                <% end %>
-            </table>
+            <div class="card bg-transparent mt-3">
+              <h5 class="card-header">投稿タイトル  <%= @post.title %></h5>
+              <div class="card-body">
+                <p class="card-text">投稿ユーザー  <%= @post.user.name %></p>
+                <p class="card-text">内容  <%= @post.body %></p>
+                <p class="card-text">
+                    <% @post.tags.each do |tag| %>
+                        <span><%= tag.name %></span>
+                    <% end %>
+                </p>
+                <p class="card-text">コメント数 <%= @post.post_comments.count %></p>
+                <p class="card-text">いいね数 <%= @post.favorites.count %></p>
+                <p class="card-text">投稿日時  <%= @post.created_at %></p>
+              </div>
+            </div>
         </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-5 scroll">
+        <% @post.post_comments.each do |post_comment| %>
+            <div class="card mt-2" style="width: 80%;">
+              <div class="card-body">
+                <p class="card-text">
+                    <table class="table table-borderless">
+                         <tr class="justify-content-around">
+                            <th class="col-2">コメントユーザー</th>
+                            <th class="col-2"><%= post_comment.user.name %></th>
+                        </tr>
+                        <tr class="justify-content-around">
+                            <th class="col-2">コメント</th>
+                            <th class="col-2"><%= post_comment.comment %></th>
+                        </tr>
+                        <tr class="justify-content-around">
+                           <th class="col-2"><%= link_to 'コメント削除',admin_post_post_comment_path(post_comment),method: :delete %></th>
+                        </tr>
+                    </table>
+                </p>
+              </div>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -21,10 +21,13 @@ body {
 .back-img{
   background-image: url(/assets/mizu);
   background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
+  height: 100%;
 }
 
 .back-color{
-   background: rgba(255, 255, 255, 0.5);
+  // background: rgba(255, 255, 255, 0.5);
 }
 
 .container{
@@ -182,15 +185,11 @@ nav {
 
 }
 
-.sidebar_fixed {
-  position: sticky;
+.page-height{
+    height: 100%;
 }
 
-.scroll{
-    height: 700px;
-    overflow: auto;
-}
-
-tr{
-  margin-top: 5px;
+.scroll-all{
+  height: 70%;
+  overflow: auto;
 }

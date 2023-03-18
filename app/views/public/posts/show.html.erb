@@ -1,62 +1,70 @@
-<h1>Public::Posts#show</h1>
 <div class="container">
-    <div class="row">
-        <div class="col-4">
-            <table class="table">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-8 col-lg px-5 px-sm-0 mx-auto mt-5">
+            <table class="table table-borderless">
+                <tr class="">
+                    <th>タイトル</th>
+                    <th><%= @post.title %></th>
+                </tr>
                 <tr>
-                    <td><%= @post.title %></td>
-                    <td>
+                    <th>話したい事</th>
+                    <th>
                         <%= @post.body %>
                         <% @post.tags.each do |tag| %>
-                            <span><%= tag.name %></span>
+                        <%= tag.name %></br>
                         <% end %>
-                    </td>
-                    <td><%= @post.user.name %></td>
-                    <td>コメント数 <%= @post.post_comments.count %></td>
-                    <td>
-                        <%= render "public/favorites/btn", post: @post %>
-                    </td>
-                    <td>
-                        <% if @post.user == current_user %>
-                            <%= link_to '投稿削除', public_post_path(@post), method: :delete %>
-                        <% end %>
-                    </td>
+                    </th>
                 </tr>
-            </table>
-        </div>
-        <div class="col">
-            <table class="table">
-                <% @post.post_comments.each do |post_comment| %>
                 <tr>
-                    <td><%= post_comment.user.name %></td>
-                    <td><%= post_comment.comment %></td>
-                    <td>
-                        <% if post_comment.user == current_user %>
-                         <%= link_to '削除',public_post_post_comment_path(post_comment),method: :delete %>
-                        <% end %>
-                    </td>
-                        
+                    <th>投稿者</th>
+                    <th><%= @post.user.name %></th>
                 </tr>
-                <% end %>
+                <tr>
+                    <th>コメント数</th>
+                    <th><%= @post.post_comments.count %> コメント</th>
+                </tr>
+                <tr>
+                    <th>いいね</th>
+                    <th id="favorite-<%= @post %>"><%= render "public/favorites/btn", post: @post %></th>
+                </tr>
+                <tr>
+                    <th>
+                     <% if @post.user == current_user %>
+                        <%= link_to '投稿削除', public_post_path(@post), method: :delete %>
+                     <% end %>
+                    </th>
+                </tr>
             </table>
         </div>
-        
-        
     </div>
-     <div class="row">
-            <div>
+    <div class="row justify-content-center align-items-end">
+        <div class="col-sm-12 col-md-8 col-lg px-5 px-sm-0 mx-auto mt-3">
+            <div class="col">
                 <%= form_with model:[@post,@post_comment],url: public_post_post_comments_path(@post),method: :post do |f| %>
-                <%= f.text_area :comment,rows:'5',placeholder: "コメントをここに" %>
-                <%= f.submit "送信" %>
+                    <%= f.text_area :comment,rows:'3',placeholder: "コメントをここに",class: "form-control" %></br>
+                    <%= f.submit "送信", class: "btn btn-success btn-sm" %>
                 <% end %>
             </div>
-     </div>
-     <div class="row">
-         <div>
-            <%= link_to '投稿一覧へ', public_posts_path, class: "btn btn-success" %>
         </div>
-        <div>
-            <%= link_to 'ユーザー一覧へ', public_users_path, class: "btn btn-dark" %>
+        <div class="col-sm-12 col-md-8 col-lg px-5 px-sm-0 mx-auto mt-3" id="post-comment">
+            <div class="scroll">
+                <div class="d-flex flex-column-reverse">
+                    <% @post.post_comments.each do |post_comment| %>
+                        <div class="card mt-3 bg-transparent" style="width: 18rem;">
+                          <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                <%= link_to public_user_path(post_comment) do  %>
+                                    <%= post_comment.user.name %>
+                                <% end %>
+                            </h6>
+                            <p class="card-text"><%= post_comment.comment %></p>
+                            <p class="align-self-end"><%= post_comment.created_at %></p>
+                          </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+         
         </div>
-     </div>
+    </div>
 </div>

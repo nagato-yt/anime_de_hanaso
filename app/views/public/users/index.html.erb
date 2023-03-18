@@ -6,12 +6,17 @@
                 <%= render 'public/users/user_info', user: current_user %>
             </div>
         </div>
-        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto mt-5">
-            <div class="card-deck d-flex flex-warp flex-column justify-content-center">
+        <div class="col-sm-12 col-md-8 col-lg-6 px-5 px-sm-0 mx-auto mt-5">
+            <div class="card-deck d-flex flex-warp justify-content-center">
                 <div class="scroll">
                     <%= render 'public/users/user_card', users: @users %>
                 </div>
                 
+            </div>
+        </div>
+        <div class="col-lg-2 d-none d-lg-block mt-5">
+            <div class="visible-lg sidebar_fixed">
+                <%= image_tag 'nakama' %>
             </div>
         </div>
     </div>

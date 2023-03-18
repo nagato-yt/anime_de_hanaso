@@ -1,4 +1,5 @@
 class Public::GroupsController < ApplicationController
+  
   before_action :ensure_correct_user, only: [:edit, :update]
     def index
       @groups = Group.all
@@ -39,7 +40,7 @@ class Public::GroupsController < ApplicationController
     def join
       @group = Group.find(params[:group_id])
       @group.users << current_user
-      redirect_to public_groups_path
+      redirect_to request.referer
     end
     
     def destroy

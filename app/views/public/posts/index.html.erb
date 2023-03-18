@@ -19,6 +19,9 @@
                         <% end %>
                     </div>
                 </div>
+                <div class="col align-self-start" onselectstart="return false;" onmousedown="return false;">
+                    <%= image_tag 'keikoku' %>
+                </div>
             </div>
         </div>
         <!--一覧-->
@@ -26,12 +29,12 @@
             <%= render 'public/posts/post_index', posts: @posts %>
         </div> 
     </div>
-    <div class="row justify-content-center">
-        <div class="col align-self-start" onselectstart="return false;" onmousedown="return false;">
-            <%= image_tag 'keikoku' %>
-        </div>
+    <div class="row justify-content-center w-100">
         <div class="col align-self-end" onselectstart="return false;" onmousedown="return false;">
-            <%= image_tag 'chuui' %>
+            <div class="text-center">
+                <%= image_tag 'chuui' %>
+            </div>
+            
         </div>
     </div>
 </div>

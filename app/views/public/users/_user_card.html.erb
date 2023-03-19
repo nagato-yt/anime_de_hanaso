@@ -8,15 +8,15 @@
             <table>
               <tr>
                   <th>フォロー</th>
-                  <th class="follow-<%= user.id %>"><%= render 'public/relationships/following_count', user: user %></th>
+                  <th class="following_count_<%= user.id %>"><%= link_to user.followings.count, public_user_followings_path(user),remote: true %></th>
               </tr>
               <tr>
                 <th>フォロワー</th>
-                <th class="follow-<%= user.id %>"><%= render 'public/relationships/follower_count', user: user %></th>
+                <th class="follower_count_<%= user.id %>"><%= link_to user.followers.count, public_user_followers_path(user),remote: true %></th>
               </tr>
             </table>
           </p>
-          <p class="follow-btn-<%= user.id %>"><%= render 'public/relationships/btn', user: user %></p>
+          <p class="follow_btn_<%= user.id %>"><%= render 'public/relationships/btn', user: user %></p>
         </div>
         <div class="card-footer">
           <div class="text-muted"><%= link_to 'もっと詳しく', public_user_path(user), class: "btn btn-outline-info btn-sm" %></div>

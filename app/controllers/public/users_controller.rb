@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
-  
+   before_action :guest_signed_in?, except: [:show,:index]
+   
   # before_action :ensure_normal_user, only: [:edit]
   def show
     @user= User.find(params[:id])

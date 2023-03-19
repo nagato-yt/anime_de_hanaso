@@ -1,5 +1,5 @@
 class Public::PostCommentsController < ApplicationController
-  
+  before_action :guest_signed_in?
   def create
     post= Post.find(params[:post_id])
     @comment= current_user.post_comments.new(post_comment_params)

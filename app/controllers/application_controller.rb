@@ -29,7 +29,12 @@ class ApplicationController < ActionController::Base
             root_path
         end
     end
-
+    
+    def guest_signed_in?
+        if current_user.id == User.guest.id
+            redirect_to root_path
+        end
+    end
 
   protected
   def configure_permitted_parameters

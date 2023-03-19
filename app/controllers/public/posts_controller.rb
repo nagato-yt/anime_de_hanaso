@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  
+  before_action :guest_signed_in?, except: [:show,:index]
   def index
     @post  = Post.new    
     @posts = Post.all

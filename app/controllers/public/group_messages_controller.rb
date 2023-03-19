@@ -1,5 +1,5 @@
 class Public::GroupMessagesController < ApplicationController
-  
+  before_action :guest_signed_in?, except: [:index]
   def index
     @group = Group.find(params[:group_id])
     @messages = Group.find(params[:group_id]).group_messages

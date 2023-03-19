@@ -6,11 +6,22 @@
         <div class="message scroll" style="width: 400px;">
           <% @chats.each do |chat| %>
             <% if chat.user_id == current_user.id %>
-              <p style="text-align: right;"><%= chat.message %></p>
-              <p style="text-align: right;"><%= chat.created_at %></p>
+            <div class="mycomment">
+              <p><%= chat.message %></p>
+            </div>
             <% else %>
-              <p style="text-align: left;"><%= chat.message %></p>
-              <p style="text-align: left;"><%= chat.created_at %></p>
+            <div class="hukidashi">
+              <div class="faceicon">
+                <div>
+                  <%= image_tag @user.get_profile_image, size:'50x50' %>
+                </div>
+                <div class="chatting">
+                  <div class="says">
+                    <p style="text-align: left;"><%= chat.message %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
             <% end %>
           <% end %>
         </div>
@@ -18,11 +29,14 @@
         <div class="errors">
           <!--<= render "layouts/errors", obj: @chat %>-->
         </div>
-        <%= form_with model: @chat,url: public_chats_path, data: {remote: true} do |f| %>
-          <%= f.text_field :message %>
-          <%= f.hidden_field :room_id %>
-          <%= f.submit '送信' %>
-        <% end %>
+        <div class="send-form">
+          <%= form_with model: @chat,url: public_chats_path, data: {remote: true} do |f| %>
+            <%= f.text_field :message %>
+            <%= f.hidden_field :room_id %>
+            <%= f.submit '送信' %>
+          <% end %>
+        </div>
+        
     </div>
   </div>
 </div>

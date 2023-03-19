@@ -10,7 +10,9 @@ Rails.application.routes.draw do
       end
       
       resources :users do
-          resource :relationships, only: [:create, :destroy]
+         #フォロー機能
+          post 'follow' => 'relationships#follow',as: 'follow'
+          delete 'unfollow' => 'relationships#unfollow', as: 'unfollow'
           get 'followings' => 'relationships#followings', as: 'followings'
           get 'folloers' => 'relationships#followers', as: 'followers'
           

@@ -35,7 +35,7 @@ class User < ApplicationRecord
       relationships.create(followed_id: user.id)
     end
     
-    #された
+    #はずした
     def unfollow(user)
       relationships.find_by(followed_id: user.id).destroy
     end

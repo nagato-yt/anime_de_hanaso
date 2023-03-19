@@ -21,11 +21,11 @@
                 </tr>
                 <tr>
                     <th>コメント数</th>
-                    <th><%= @post.post_comments.count %> コメント</th>
-                </tr>
+                    <th class="comment_counter"><%= render 'public/post_comments/comment_counter', post: @post %></th>
+            </tr>
                 <tr>
                     <th>いいね</th>
-                    <th id="favorite-<%= @post %>"><%= render "public/favorites/btn", post: @post %></th>
+                    <th class=<%="favorite-" + @post.id.to_s  %>><%= render partial: "public/favorites/btn", locals: {post: @post} %></th>
                 </tr>
                 <tr>
                     <th>
@@ -39,32 +39,18 @@
     </div>
     <div class="row justify-content-center align-items-end">
         <div class="col-sm-12 col-md-8 col-lg px-5 px-sm-0 mx-auto mt-3">
-            <div class="col">
-                <%= form_with model:[@post,@post_comment],url: public_post_post_comments_path(@post),method: :post do |f| %>
-                    <%= f.text_area :comment,rows:'3',placeholder: "コメントをここに",class: "form-control" %></br>
-                    <%= f.submit "送信", class: "btn btn-success btn-sm" %>
-                <% end %>
+            <div class="col comment_form">
+                <%= render 'public/post_comments/form', post: @post, post_comment: @post_comment %>
             </div>
         </div>
         <div class="col-sm-12 col-md-8 col-lg px-5 px-sm-0 mx-auto mt-3" id="post-comment">
-            <div class="scroll">
-                <div class="d-flex flex-column-reverse">
-                    <% @post.post_comments.each do |post_comment| %>
-                        <div class="card mt-3 bg-transparent" style="width: 18rem;">
-                          <div class="card-body">
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                <%= link_to public_user_path(post_comment) do  %>
-                                    <%= post_comment.user.name %>
-                                <% end %>
-                            </h6>
-                            <p class="card-text"><%= post_comment.comment %></p>
-                            <p class="align-self-end"><%= post_comment.created_at %></p>
-                          </div>
-                        </div>
-                    <% end %>
+            <div class="scroll ">
+                <div class="d-flex flex-column-reverse ">
+                    <div class="post_comment_all">
+                        <%= render 'public/post_comments/comment_card', post: @post %>
+                    </div>
                 </div>
             </div>
-         
         </div>
     </div>
 </div>

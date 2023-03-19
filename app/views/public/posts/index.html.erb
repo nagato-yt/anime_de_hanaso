@@ -13,6 +13,7 @@
                     <div class="col"> 
                         <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
                             <% Tag.all.each do |t| %>
+                            
                                 <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
                             <% end %>
                             <%= submit_tag '検索' %>

@@ -14,7 +14,10 @@
                    <%= link_to '詳細へ', public_post_path(post), class: "btn btn-primary" %>
                </div>
                <div class="col-sm col-md col-lg-2">
-                   <%= render "public/favorites/btn", post: post %>
+                   <div class=<%="favorite-" + post.id.to_s  %>>
+                       <%= render "public/favorites/btn", post: post %>
+                   </div>
+                   
                </div>
            </div>   
           </div>

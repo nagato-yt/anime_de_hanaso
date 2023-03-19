@@ -7,6 +7,10 @@ class User < ApplicationRecord
     has_many :posts, dependent: :destroy
     has_many :favorites, dependent: :destroy
     has_many :post_comments, dependent: :destroy
+    
+    has_one_attached :profile_image
+    
+    
     # DM機能
     has_many :user_rooms, dependent: :destroy
     has_many :chats, dependent: :destroy
@@ -65,6 +69,10 @@ class User < ApplicationRecord
     
     def active_for_authentication?
       super && (is_deleted == false)
+    end
+    
+    def get_profile_image
+      (profile_image.attached?) ? profile_image : 'no_image.jpg'
     end
   
   

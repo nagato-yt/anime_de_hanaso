@@ -1,6 +1,10 @@
 
 <table class='table table-borderless'>
-  <!--<tr>%= image_tag user.get_profile_image, size:'100x100' %></tr>-->
+  <tr>
+    <th class="col"><%= image_tag user.get_profile_image, size:'150x150' %></th>
+  </tr>
+  
+  
   <tr>
     <th>ニックネーム</th>
     <th><%= user.name %></th>
@@ -11,11 +15,11 @@
   </tr>
   <tr>
     <th>フォロー</th>
-    <th><%= link_to user.followings.count, public_user_followings_path(user) %></th>
+    <th class="follow-<%= user.id %>"><%= render 'public/relationships/following_count', user: user %></th>
   </tr>
   <tr>
     <th>フォロワー</th>
-    <th><%= link_to user.followers.count, public_user_followers_path(user) %></th>
+    <th class="follow-<%= user.id %>"><%= render 'public/relationships/follower_count', user: user %></th>
   </tr>
   <tr>
     <th>
@@ -34,11 +38,11 @@
 　
 <div class='row mb-5'>
   <% if current_user != user %>
-    <td><%= render "public/relationships/btn", user: user %></td>
+    <td class="follow-btn-<%= user.id %>"><%= render "public/relationships/btn", user: user %></td>
   <% elsif current_user == User.guest %>
   <% else %>
-    <%= link_to 'ユーザー情報編集', edit_user_registration_path(user), class: "btn btn-outline-info btn-block edit_user_#{user.id}" %>
-    <%= link_to 'かんたんプロフィール編集', edit_public_user_path(user), class: "btn btn-outline-info btn-block" %>
+    <%= link_to 'ユーザー情報編集', edit_user_registration_path(user), class: "btn btn-info btn-block edit_user_#{user.id}" %>
+    <%= link_to 'かんたんプロフィール編集', edit_public_user_path(user), class: "btn btn-info btn-block" %>
   <% end %>
 </div>
         

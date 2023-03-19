@@ -1,4 +1,8 @@
-いいね一覧
-<% @favorite_posts.each do |post|%>
-<%=post.title %>
-<% end %>
+<div class="container page-height">
+  <h2 class="text-center mt-5">いいねをした投稿</h2>
+    <div class="row justify-content-center">
+        <%= render 'public/posts/post_index', posts: @favorite_posts %>
+    </div>
+</div>
+
+    

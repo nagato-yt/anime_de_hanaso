@@ -1,0 +1,5 @@
+$(".post_comment_area").val('');
+
+$('.comment_counter').html("<%= j(render 'public/post_comments/comment_counter', post: @comment.post) %>")
+
+$('.post_comment_all').html("<%= j(render 'public/post_comments/comment_card', post: @comment.post) %>");

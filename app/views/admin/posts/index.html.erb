@@ -1,23 +1,23 @@
-<h1>Admin::Posts#index</h1>
-<div class="container">
+<div class="container mb-5 page-height">
     <div class="row">
         <div class="col">
-            <table class="table">
-                <thead>
-                    <th>title</th>
-                    <th>body</th>
-                    <th class="colaps"></th>
-                </thead>
-                <tbody>
-                    <% @posts.each do |post| %>
-                    <tr>
-                        <td><%= post.title %></td>
-                        <td><%= post.body %></td>
-                        <td><%= link_to '詳細', admin_post_path(post) %></td>
-                    </tr>
-                    <% end %>
-                </tbody>
-            </table>
+            <div id="admin-user-scroll">
+                <% @posts.each do |post| %>
+                    <div class="card bg-transparent mt-3">
+                      <h5 class="card-header"><%= post.title %></h5>
+                      <div class="card-body">
+                        <p class="card-text"><%= post.user.name %></p>
+                        <p class="card-text"><%= post.body %></p>
+                        <p class="card-text"><%= post.created_at %></p>
+                       <div class="row justify-content-end">
+                           <div class="col-2">
+                               <%= link_to '詳細', admin_post_path(post), class: "btn btn-primary" %>
+                           </div>
+                       </div>   
+                      </div>
+                    </div>
+                <%end%>
+            </div>
         </div>
     </div>
 </div>

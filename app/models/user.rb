@@ -7,6 +7,10 @@ class User < ApplicationRecord
     has_many :posts, dependent: :destroy
     has_many :favorites, dependent: :destroy
     has_many :post_comments, dependent: :destroy
+    
+    has_one_attached :profile_image
+    
+    
     # DM機能
     has_many :user_rooms, dependent: :destroy
     has_many :chats, dependent: :destroy
@@ -31,7 +35,7 @@ class User < ApplicationRecord
       relationships.create(followed_id: user.id)
     end
     
-    #された
+    #はずした
     def unfollow(user)
       relationships.find_by(followed_id: user.id).destroy
     end
@@ -48,12 +52,27 @@ class User < ApplicationRecord
     end
    end
    
+   def ensure_normal_user
+     resource.email == 'dazai_osamu@example.com'
+     resource.name == '太宰 治'
+   end
+   
+   #ransuck
    def self.ransackable_attributes(auth_object = nil)
     ["email","name"]
    end
    
     def self.ransackable_associations(auth_object = nil)
     ["chats", "favorites", "followers", "followings", "post_comments", "posts", "relationships", "reverse_of_relationships", "rooms", "user_rooms"]
+    end
+    
+    
+    def active_for_authentication?
+      super && (is_deleted == false)
+    end
+    
+    def get_profile_image
+      (profile_image.attached?) ? profile_image : 'no_image.jpg'
     end
   
   

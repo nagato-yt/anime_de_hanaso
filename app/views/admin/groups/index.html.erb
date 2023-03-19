@@ -1,23 +1,7 @@
-<h1>Admin::Groups#index</h1>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <table class="table">
-                <thead>
-                    <th>name</th>
-                    <th></th>
-                    <th class="colaps"></th>
-                </thead>
-                <tbody>
-                    <% @groups.each do |group| %>
-                    <tr>
-                        <td><%= group.name %></td>
-                        <td></td>
-                        <td><%= link_to '詳細', admin_group_path(group) %></td>
-                    </tr>
-                    <% end %>
-                </tbody>
-            </table>
+<div class="container page-height">
+    <div class="row justify-cintent-center">
+        <div class="col-sm col-md col-lg-5">
+            <%= render 'admin/groups/group_index', groups: @groups %>
         </div>
     </div>
 </div>

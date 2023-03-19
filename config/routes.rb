@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'group_messages/index'
-  end
     root to: 'public/homes#top'
-    
    
     
   namespace :public do
@@ -14,19 +10,25 @@ Rails.application.routes.draw do
       end
       
       resources :users do
-          resource :relationships, only: [:create, :destroy]
+         #フォロー機能
+          post 'follow' => 'relationships#follow',as: 'follow'
+          delete 'unfollow' => 'relationships#unfollow', as: 'unfollow'
           get 'followings' => 'relationships#followings', as: 'followings'
           get 'folloers' => 'relationships#followers', as: 'followers'
           
           member do
               get :favorites
           end
+          # 退会機能
+          get 'users/:id/unsubscribe' =>'users#unsubscribe', as: 'unsubscribe'
+          patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+          
       end
       resources :chats, only: [:show, :create]
       resources :groups do
        get "join" => "groups#join"
        delete "all_destroy" => "groups#all_destroy"
-       resources :group_messages, only: [:index, :create, :destroy]
+       resources :group_messages, only: [:index, :create]
       end
   end
   
@@ -34,9 +36,19 @@ Rails.application.routes.draw do
    root to: 'homes#top'
    
     resources :tags, only: [:index, :create, :edit, :update]
-    resources :users, only: [:index,:show,:destroy]
-    resources :posts, only: [:index,:show, :destroy]
-    resources :groups, only: [:index,:show, :destroy]
+    resources :users, only: [:index,:show,:destroy] do
+     # 退会機能
+      get 'users/:id/unsubscribe' =>'users#unsubscribe', as: 'unsubscribe'
+      patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+    end
+    resources :posts, only: [:index,:show, :destroy] do 
+     resources :post_comments, only: [:index,:show, :destroy]
+    end
+    resources :groups, only: [:index,:show, :destroy] do
+       get "join" => "groups#join"
+       delete "all_destroy" => "groups#all_destroy"
+        resources :group_messages, only: [:index, :create]
+    end
   end
   
   

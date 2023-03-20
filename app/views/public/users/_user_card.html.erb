@@ -16,7 +16,20 @@
               </tr>
             </table>
           </p>
-          <p class="follow_btn_<%= user.id %>"><%= render 'public/relationships/btn', user: user %></p>
+          <table>
+            <td>
+             <p class="follow_btn_<%= user.id %>"><%= render 'public/relationships/btn', user: user %></p>
+            </td>
+            <td>
+              <div class="direct_chat_<%= user.id %>">
+                <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
+                  <%= render 'public/users/chat_btn', user: user %>
+                <% end %>
+              </div>
+            </td>
+          </table>
+          
+         
         </div>
         <div class="card-footer">
           <div class="text-muted"><%= link_to 'もっと詳しく', public_user_path(user), class: "btn btn-outline-info btn-sm" %></div>

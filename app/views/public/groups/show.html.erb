@@ -31,7 +31,9 @@
                 <% else %>
                 <td><%= link_to '参加する', public_group_join_path(@group), class: "btn btn-sm btn-success" %></td>
                 <% end %>
+                <% if @group.users.include?(current_user) %>
                 <td><%= link_to 'チャットを始める', public_group_group_messages_path(@group), class: "btn btn-outline-info" %></td>
+                <% end %>
               </tr>
            </table>
             <div>

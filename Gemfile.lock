@@ -87,9 +87,15 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.12.0)
+    faker (3.1.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    hirb (0.7.3)
+    hirb-unicode (0.0.5)
+      hirb (~> 0.5)
+      unicode-display_width (~> 0.1.1)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -186,6 +192,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    seed-fu (2.3.9)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
     selenium-webdriver (4.8.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -208,6 +217,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (0.1.1)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -240,6 +250,9 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  faker
+  hirb
+  hirb-unicode
   jbuilder (~> 2.7)
   listen (~> 3.3)
   puma (~> 5.0)
@@ -247,6 +260,7 @@ DEPENDENCIES
   rails (~> 6.1.7, >= 6.1.7.2)
   ransack
   sass-rails (>= 6)
+  seed-fu
   selenium-webdriver (>= 4.0.0.rc1)
   spring
   sqlite3 (~> 1.4)

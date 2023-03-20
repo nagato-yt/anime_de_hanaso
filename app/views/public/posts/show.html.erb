@@ -9,7 +9,8 @@
                 <tr>
                     <th>話したい事</th>
                     <th>
-                        <%= @post.body %>
+                        <%= @post.body %></br>
+                        タグ：
                         <% @post.tags.each do |tag| %>
                         <%= tag.name %></br>
                         <% end %>

@@ -3,29 +3,31 @@
     <div class="col-sm-12 col-md-8 col-lg-6 px-5 px-sm-0 mx-auto mt-5">
       <h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>" class="mt-3">
         <%= @user.name %> さんとのチャット</h1>
-        <div class="message scroll" style="width: 400px;">
+        <div class="message scroll" style="width: 100%;">
           <% @chats.each do |chat| %>
             <% if chat.user_id == current_user.id %>
-            <div class="mycomment">
-              <p><%= chat.message %></p>
-            </div>
-            <% else %>
-            <div class="hukidashi">
-              <div class="faceicon">
-                <div>
-                  <%= image_tag @user.get_profile_image, size:'50x50' %>
-                </div>
-                <div class="chatting">
-                  <div class="says">
-                    <p style="text-align: left;"><%= chat.message %></p>
-                  </div>
-                </div>
+            <!--右-->
+            <div class="kaiwa">
+              <div class="kaiwa-text-left">
+                 <p class="kaiwa-text"><%= chat.message %></p>
               </div>
             </div>
+            <% else %>
+            <!--左-->
+            <div class="kaiwa">
+                <figure class="kaiwa-img-left">
+                  <%= image_tag @user.get_profile_image %>
+                <figcaption class="kaiwa-img-description">
+                  <%= @user.name %>
+                </figcaption>
+                </figure>
+                  <div class="kaiwa-text-right">
+                    <p class="kaiwa-text"><%= chat.message %></p>
+                  </div>
+                </div>
             <% end %>
           <% end %>
         </div>
-        
         <div class="errors">
           <!--<= render "layouts/errors", obj: @chat %>-->
         </div>

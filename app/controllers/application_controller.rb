@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
             root_path
         end
     end
-    
+
+  
     def after_sign_out_path_for(resource_or_scope)
         if resource_or_scope == :user
             root_path
@@ -35,6 +36,8 @@ class ApplicationController < ActionController::Base
             redirect_to root_path
         end
     end
+
+
 
   protected
   def configure_permitted_parameters

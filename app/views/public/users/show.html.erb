@@ -1,17 +1,8 @@
-<h1>Public::Users#show</h1>
-
 <div class="container">
-    <div class="row">
-        <div class="col-3 ">
-            <div>
-                <%= current_user.name %>
-                <%= current_user.email %>
-            </div>
-            <div>
-                <%= link_to '投稿へ', public_posts_path, class: "btn btn-success" %>
-            </div>
-            <div>
-                <%= link_to 'いいね一覧',favorites_public_user_path, class: "btn btn-info" %>
+    <h2 class= "text-center mt-5">ユーザープロフィール</h2>
+        <div class="row mt-5">
+            <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+                <%= render 'public/users/user_info', user: @user %>
             </div>
         </div>
     </div>

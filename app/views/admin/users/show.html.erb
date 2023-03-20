@@ -1,0 +1,53 @@
+<div class="container">
+    <h2 class= "text-center mt-5">ユーザープロフィール</h2>
+        <div class="row mt-5">
+            <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+                <table class='table table-borderless'>
+                  <!--<tr>%= image_tag user.get_profile_image, size:'100x100' %></tr>-->
+                  <tr>
+                    <th>ニックネーム</th>
+                    <th><%= @user.name %></th>
+                  </tr>
+                  <tr>
+                      <th>メールアドレス</th>
+                      <th><%= @user.email %></th>
+                  </tr>
+                  <tr>
+                    <th>自己紹介</th>
+                    <th><%= @user.introduction %></th>
+                  </tr>
+                  <tr>
+                    <th>フォロー</th>
+                    <th><%= link_to @user.followings.count, public_user_followings_path(@user) %></th>
+                  </tr>
+                  <tr>
+                    <th>フォロワー</th>
+                    <th><%= link_to @user.followers.count, public_user_followers_path(@user) %></th>
+                  </tr>
+                  <tr>
+                    <th>
+                      <%= link_to 'いいね一覧',favorites_public_user_path(@user), class: "btn btn-outline-info" %>
+                    </th>
+                  </tr>
+                  <tr>
+                      <th>ユーザー削除</th>
+                      <th><%= link_to "退会させる", admin_user_withdrawal_path(@user), method: :patch, data: { confilm: "本当に退会させますか？" } %></th>
+                  </tr>
+                  <tr>
+                      <th>状態</th>
+                      <th>
+                       <% if @user.is_deleted == false %>
+                           <b class="text-success">有効</b>
+                       <% else %>
+                           <b class="text-black-50">退会</b>
+                       <% end %>
+                      </th>
+                     
+                  </tr>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</div>
+

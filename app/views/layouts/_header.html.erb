@@ -1,0 +1,55 @@
+<header>
+  <a class="logotype" href="/"><%= image_tag 'logo' %></a>
+  <nav>
+    <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle">
+      <span></span>
+    </label>
+    <ul class="menu__box">
+     <% if user_signed_in? %>
+      <li><a class="menu__item" href="#">
+          <%= link_to public_user_path(current_user),class: 'nav-link text-white' do %>
+               プロフィール
+          <% end %>
+      </a></li>
+      <li><a class="menu__item" href="#">
+          <%=  link_to public_users_path,class: 'nav-link text-white' do %>
+              アニメ好きの人々
+          <% end %>
+      </a></li>
+      <li><a class="menu__item" href="#">
+          <%=  link_to public_posts_path ,class: 'nav-link text-white' do %>
+              みんなの投稿
+          <% end %>
+      </a></li>
+      <li><a class="menu__item" href="#">
+          <%= link_to public_groups_path, class: 'nav-link text-white' do %>
+              チャットグループ
+          <% end %>
+      </a></li>
+      <li><a class="menu__item" href="#">
+          <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-white' do %>
+               ログアウト
+          <% end %>
+      </a></li>
+      <li><a class="menu__item" href="#">
+            <%= link_to :back,class: 'nav-link text-white' do %>
+                戻る
+            <% end %>
+        </a></li>
+     <% else %>
+      
+      <li><a class="menu__item" href="#">
+          <%= link_to new_user_registration_path,class: 'nav-link text-white' do %>
+               新規ユーザー登録
+          <% end %>
+      </a></li>
+      <li><a class="menu__item" href="#">
+          <%= link_to new_user_session_path ,class: 'nav-link text-white' do %>
+              ログイン
+          <% end %>
+      </a></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>

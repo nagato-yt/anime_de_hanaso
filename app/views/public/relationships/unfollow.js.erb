@@ -1,0 +1,7 @@
+$('.follow_btn_<%= @user.id %>').html("<%= j(render 'public/relationships/btn', user: @user) %>");
+
+$('.following_count_<%= current_user.id %>').html("<%= j(render 'public/relationships/following_count', user: current_user) %>");
+
+$('.follower_count_<%= @user.id %>').html("<%= j(render 'public/relationships/follower_count', user: @user) %>");
+
+$('.direct_chat_<%= @user.id %>').html("<%= j(render 'public/users/chat_btn', user: @user) %>");

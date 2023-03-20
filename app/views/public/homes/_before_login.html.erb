@@ -1,0 +1,23 @@
+    <div class="container">
+        <div class="row  justify-content-center">
+            <h2 class="text-top mt-5">
+                ようこそ<strong>！</strong></br>
+                ここ、アニメで話そ！ではアニメ好きの皆さんが</br>
+                心置きなく好きなアニメについて語り合える場所です。</br>
+                アニメ好きな皆さんはもちろん、</br>
+                ちょっとだけ興味あるという方でも、</br>
+                それでは、皆さん楽しくお話ししましょう<strong>!</strong>
+            </h2>
+        </div>
+        <div class="row mt-5 justify-content-center">
+            <div class="row">
+                <%= link_to public_guest_sign_in_path,method: :post, class: 'nav-link text-dark btn btn-outline-info btn-lg' do %>
+                      覗いてみる（ゲスト)
+                <% end %>
+            </div>
+        </div>
+        <div class="row justify-content-center image">
+            <%= image_tag 'yoroshiku' %>
+        </div>
+    </div>
+

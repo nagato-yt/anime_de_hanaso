@@ -26,10 +26,23 @@ class Public::SessionsController < Devise::SessionsController
   # end
   
   def guest_sign_in
-    find_or_create_by(email: 'guest@example.com') do |user|
-        user.password = SecureRandom.urlsafe_base64
-      end
+    user= User.guest
     sign_in user
     redirect_to root_path, notice: 'ゲストログインしました。'
   end
+  
+  protected
+  
+  def reject_user
+    @user = User.find_by(name: params[:user][:name])
+    if @user 
+      if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
+        flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+        redirect_to new_user_registration
+      else
+        flash[:notice] = "項目を入力してください"
+      end
+    end
+  end
+  
 end

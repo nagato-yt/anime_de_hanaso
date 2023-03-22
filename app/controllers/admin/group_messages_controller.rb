@@ -5,6 +5,7 @@ class Admin::GroupMessagesController < ApplicationController
     @group = Group.find(params[:group_id])
     @messages = Group.find(params[:group_id]).group_messages
     @message = GroupMessage.new
+    @group_user = @message.user
   end 
   
   def create
@@ -12,7 +13,6 @@ class Admin::GroupMessagesController < ApplicationController
     @message.save
     redirect_to request.referer
   end
-  
   
   private
     def message_params

@@ -1,6 +1,6 @@
 class Public::GroupsController < ApplicationController
     before_action :guest_signed_in?, except: [:show,:index]
-    before_action :ensure_correct_user, only: [:edit,:update,:destroy]
+    before_action :ensure_correct_user, only: [:edit,:update,:all_destroy]
     def index
       @groups = Group.all
       @group  = Group.new

@@ -19,7 +19,7 @@ body {
   width: 100%;
 }
 .back-img{
-  background-image: url("/assets/mizu");
+  background-image: repeating-radial-gradient(circle at 75% 75%, rgba(178, 254, 255, 1), rgba(137, 219, 248, 0.9) 13%, rgba(178, 255, 254, 0.86) 30%);
   background-position: center;
   background-repeat: no-repeat;
   background-size:cover;

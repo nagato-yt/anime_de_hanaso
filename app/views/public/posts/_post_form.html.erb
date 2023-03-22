@@ -9,7 +9,7 @@
     </div>
     <div class="form-group">
         <table class= "table">
-            <th>つけるタグ</th>
+            <th>つけるタグ</th><th><%= f.submit '作成する', class: 'btn btn-success' %> </th>
             <%= f.collection_check_boxes(:tag_ids,Tag.all, :id, :name) do |tag| %>
             <tr>
                 <td><%= tag.check_box class: 'form-check-input' %></td>
@@ -17,8 +17,5 @@
             </tr>
             <% end %>
         </table>
-    </div>
-    <div class="form-group">
-        <%= f.submit '作成する', class: 'btn btn-success' %> 
     </div>
 <%end%>

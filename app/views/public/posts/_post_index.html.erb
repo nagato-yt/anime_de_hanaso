@@ -4,7 +4,7 @@
           <h5 class="card-header"><%= post.title %></h5>
           <div class="card-body">
             <h5 class="card-title">
-                投稿者 <%=link_to public_user_path(post) do %>
+                投稿者 <%=link_to public_user_path(post.user) do %>
                         <%= post.user.name %>
                         <% end %>
             </h5>

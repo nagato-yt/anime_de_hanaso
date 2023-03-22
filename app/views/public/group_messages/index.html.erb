@@ -1,25 +1,43 @@
-<h1>Public::GroupMessages#index</h1>
 <div class="container">
-    <div class="row">
-        <div class="chat-messages">
-            <div class="chat-messages__chat-group-back">
-                <%= link_to '戻る', public_group_path(@group), class: "btn btn-lg btn-outline-secondary" %>
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-8 col-lg-6 px-5 px-sm-0 mx-auto mt-5">
+      <h1 class="mt-3"><%= @group.name %> のチャット</h1>
+        <div class="message scroll" style="width: 100%;">
+          <% @messages.each do |message| %>
+            <% if message.user_id == current_user.id %>
+            <!--右-->
+            <div class="kaiwa">
+              <div class="kaiwa-text-left">
+                 <p class="kaiwa-text"><%= message.message %></p>
+              </div>
             </div>
-            
-            <div class="chat-messages__convertions">
-                <% @messages.each do |message| %>
-                        <p><%= message.created_at.strftime("%Y年%m月%d日") %>
-                        <%= message.message %></p>
-                <% end %>
-            </div>
+            <% else %>
+            <!--左-->
+            <div class="kaiwa">
+                <figure class="kaiwa-img-left">
+                  <%= image_tag @group_user.get_profile_image %>
+                <figcaption class="kaiwa-img-description">
+                  <%= @group_user.name %>
+                </figcaption>
+                </figure>
+                  <div class="kaiwa-text-right">
+                    <p class="kaiwa-text"><%= mssage.message %></p>
+                  </div>
+                </div>
+            <% end %>
+          <% end %>
         </div>
-    </div>
-    <div class="row">
-        <%= form_with model: @message, url: public_group_group_messages_path(@group),method: :post do |f| %>
-            <%= f.label :message, '呟く' %></br>
-            <%= f.text_field :message, class: "control-form" %></br>
+        <div class="errors">
+          <!--<= render "layouts/errors", obj: @chat %>-->
+        </div>
+        <div class="send-form">
+          <%= form_with model: @message,url: public_group_group_messages_path(@group),method: :post, data: {remote: true} do |f| %>
+            <%= f.text_field :message %>
             <%= f.hidden_field :group_id, :value => @group.id %>
-            <%= f.submit '送信', class: "btn btn-outline-success btn-sm" %>
-        <% end %>
+            <%= f.submit '送信',class: "btn btn-outline-success btn-sm" %>
+          <% end %>
+        </div>
+        
     </div>
+  </div>
 </div>

@@ -7,6 +7,12 @@
     </label>
     <ul class="menu__box">
      <% if user_signed_in? %>
+     <li>
+         <p id="notice"><%= notice %></p>
+     </li>
+     <li>
+         <p> <%= current_user.name %> さん！</p>
+     </li>
       <li><a class="menu__item" href="#">
           <%= link_to public_user_path(current_user),class: 'nav-link text-white' do %>
                プロフィール
@@ -38,7 +44,9 @@
             <% end %>
         </a></li>
      <% else %>
-      
+      <li>
+         <p id="notice"><%= notice %></p>
+     </li>
       <li><a class="menu__item" href="#">
           <%= link_to new_user_registration_path,class: 'nav-link text-white' do %>
                新規ユーザー登録

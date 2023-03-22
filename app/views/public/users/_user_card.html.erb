@@ -8,11 +8,11 @@
             <table>
               <tr>
                   <th>フォロー</th>
-                  <th class="following_count_<%= user.id %>"><%= link_to user.followings.count, public_user_followings_path(user),remote: true %></th>
+                  <th class="following_count_<%= user.id %>"><%= link_to user.followings.count, public_user_followings_path(user) %></th>
               </tr>
               <tr>
                 <th>フォロワー</th>
-                <th class="follower_count_<%= user.id %>"><%= link_to user.followers.count, public_user_followers_path(user),remote: true %></th>
+                <th class="follower_count_<%= user.id %>"><%= link_to user.followers.count, public_user_followers_path(user) %></th>
               </tr>
             </table>
           </p>

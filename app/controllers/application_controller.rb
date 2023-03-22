@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
         if resource_or_scope == :user
             root_path flash[:notice]= "いってらしゃいませ！"
         elsif resource_or_scope == :admin
-            admin_root_path
+            admin_root_path flash[:notice]= "いってらしゃいませ！"
         else
             root_path flash[:notice]= "いってらしゃいませ！"
         end

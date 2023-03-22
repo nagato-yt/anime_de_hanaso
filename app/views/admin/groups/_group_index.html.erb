@@ -3,7 +3,7 @@
         <div class="col">
             <% groups.each do |group| %>
                 <div class="card mt-3" style="width: 100%;">
-                  <img class="bd-placeholder-img card-img-top"><%= image_tag 'owabi', width: '100%', height: '170px' %></img>
+                  <img class="bd-placeholder-img card-img-top"><div onselectstart="return false;" onmousedown="return false;"><%= image_tag group.get_profile_image, width: '150px', height: '150px' %></div></img>
                   <div class="card-body">
                     <h5 class="card-title"><%= group.name %></h5>
                     <p class="card-text"><%= group.introduction %></p>

@@ -16,24 +16,25 @@ class ApplicationController < ActionController::Base
         if resource_or_scope.is_a?(Admin)
             admin_root_path
         else
-            root_path
+            flash[:notice]= "おかえりなさい！"
+            root_path 
         end
     end
 
   
     def after_sign_out_path_for(resource_or_scope)
         if resource_or_scope == :user
-            root_path
+            root_path flash[:notice]= "いってらしゃいませ！"
         elsif resource_or_scope == :admin
             admin_root_path
         else
-            root_path
+            root_path flash[:notice]= "いってらしゃいませ！"
         end
     end
     
     def guest_signed_in?
         if current_user.id == User.guest.id
-            redirect_to root_path
+            redirect_to root_path flash[:notice]= "ゲストユーザーでログインしました！"
         end
     end
 

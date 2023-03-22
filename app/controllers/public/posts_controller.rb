@@ -30,13 +30,19 @@ class Public::PostsController < ApplicationController
   def create
     @post= Post.new(post_params)
     @post.user_id= current_user.id
-    @post.save
-    redirect_to request.referer
+   if @post.save
+     flash[:notice]= "投稿しました！"
+      redirect_to request.referer
+   else
+     flash[:notice]= "空欄では投稿できません！"
+     redirect_to request.referer
+   end
   end
   
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+     flash[:notice]= "投稿を削除しました！"
     redirect_to public_posts_path
   end
   

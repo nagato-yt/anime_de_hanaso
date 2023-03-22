@@ -8,8 +8,8 @@
 
 
 Admin.create!(
-   email: 'hukuzawa@email.com' ,
-   password: '123456', 
+   email: ENV['ADMIN_EMAIL'] ,
+   password: ENV['ADMIN_PASSWORD'], 
 )
 
 10.times do
@@ -17,8 +17,8 @@ Admin.create!(
     name: Faker::JapaneseMedia::StudioGhibli.character,
     introduction: 'こんにちは、アニメが好きです。よろしくお願いします。たくさん話しましょう！',
     email: Faker::Internet.email,
-    password: '000000',
-    password_confirmation: '000000',
+    password: ENV['USER_PASSWORD'],
+    password_confirmation: ENV['USER_PASSWORD'],
   )
   puts "\"#{user.name}\" has created!"
 end

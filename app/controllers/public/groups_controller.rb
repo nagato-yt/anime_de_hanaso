@@ -11,7 +11,6 @@ class Public::GroupsController < ApplicationController
     end
   
     def edit
-      
     end
   
     def new
@@ -65,6 +64,7 @@ class Public::GroupsController < ApplicationController
     
     
   private
+  
     def group_params
        params.require(:group).permit(:name, :introduction, :profile_image)
     end

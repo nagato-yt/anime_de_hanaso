@@ -4,7 +4,6 @@ class Public::GroupMessagesController < ApplicationController
     @group = Group.find(params[:group_id])
     @messages = Group.find(params[:group_id]).group_messages
     @message = GroupMessage.new
-    @group_user = @message.user
   end
   
   def create

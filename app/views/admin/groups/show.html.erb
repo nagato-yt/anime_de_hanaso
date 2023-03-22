@@ -1,36 +1,35 @@
 <div class="container page-height">
     <div class="row">
         <div class="col-sm-12 col-md-8 col-lg px-5 px-sm-0 mx-auto mt-5">
-          <img src="..." class="rounded mx-auto d-block" alt="...">
-           <table class= "table table-borderless">
-              <tr>
-                <th>グループ名</th>
-                <th><%= @group.name %></th>
-              </tr>
-              <tr>
-                <th>紹介文</th>
-                <th><%= @group.introduction %></th>
-              </tr>
-              <tr>
-                <th>メンバー</th>
-                <th>
-                  <% @group.users.each do |member| %>
-                    <%= member.name %><br>
-                  <% end %>
-                </th>
-              </tr>
-                <td>
-                    <%= link_to 'グループ削除',admin_group_path(@group),
-                    method: :delete,data: { confirm: '本当に削除しますか？' } ,
-                    class: "btn btn-sm btn-outline-danger" %>
-                </td>
-                <td><%= link_to 'チャットを始める', admin_group_group_messages_path(@group), class: "btn btn-outline-info" %></td>
-              </tr>
-           </table>
-            <div>
-                <%= link_to '一覧へ', admin_groups_path %>
-            </div>
-        </div>
+            <div onselectstart="return false;" onmousedown="return false;"><%= image_tag @group.get_profile_image, width: '150px', height: '150px' %></div>
+             <table class= "table table-borderless">
+                <tr>
+                  <th>グループ名</th>
+                  <th><%= @group.name %></th>
+                </tr>
+                <tr>
+                  <th>紹介文</th>
+                  <th><%= @group.introduction %></th>
+                </tr>
+                <tr>
+                  <th>メンバー</th>
+                  <th>
+                    <% @group.users.each do |member| %>
+                      <%= member.name %><br>
+                    <% end %>
+                  </th>
+                </tr>
+                  <td>
+                      <%= link_to 'グループ削除',admin_group_path(@group),
+                      method: :delete,data: { confirm: '本当に削除しますか？' } ,
+                      class: "btn btn-sm btn-outline-danger" %>
+                  </td>
+                  <td><%= link_to 'チャットを始める', admin_group_group_messages_path(@group), class: "btn btn-outline-info" %></td>
+                </tr>
+             </table>
+          <div>
+              <%= link_to '一覧へ', admin_groups_path %>
+          </div>
     </div>
 </div>
 

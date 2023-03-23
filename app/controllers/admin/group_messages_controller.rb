@@ -7,15 +7,7 @@ class Admin::GroupMessagesController < ApplicationController
     @message = GroupMessage.new
   end 
   
-  def create
-    @message= GroupMessage.new(message_params)
-    @message.save
-    redirect_to request.referer
-  end
-  
   private
-    def message_params
-      params.require(:group_message).permit(:message, :group_id).merge(user_id: current_user.id)
-    end
+  
 end
 

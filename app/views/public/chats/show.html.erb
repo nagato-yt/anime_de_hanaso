@@ -31,7 +31,7 @@
         <div class="errors">
           <!--<= render "layouts/errors", obj: @chat %>-->
         </div>
-        <div class="send-form">
+        <div class="send-form text-center">
           <%= form_with model: @chat,url: public_chats_path, data: {remote: true} do |f| %>
             <%= f.text_field :message %>
             <%= f.hidden_field :room_id %>

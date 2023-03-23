@@ -25,10 +25,24 @@
 - 1日の終わりのプライベートタイム
 - 休日に誰かと話したい時
 
+### 利用規約
+ご利用にあたっての注意事項</br>
+当サイトをご利用の際には下記注意事項に同意したものとみなします。</br>
+当サイト内で画像をアップロードする際に、</br>
+アニメのスクリーンショットや、キャプチャ画像等、</br>
+著作権侵害にあたる画像等を、</br>
+アップロードすることは禁止しています。</br>
+こちらの注意事項を守らずに著作権侵害等の罪に</br>
+問われたとしても当サイトは一切の責任を負いません。</br>
+ご利用者様自らで対応をしてください。</br>
+ご自身に著作権があるもの(オリジナルイラスト等)につきましては、</br>
+ご自由にお使いください。
+
+
 ## 設計書
 -アプリケーション詳細設計書 https://docs.google.com/spreadsheets/d/16Qcv5xAVdyMZ3RWLdgNHj-Jr8zsPONVo/edit?usp=sharing&ouid=100470540592191778476&rtpof=true&sd=true
 -テーブル定義書 https://docs.google.com/spreadsheets/d/1WYc-s5PwsD-jWxLw5DcvbD8F4rE3M8NmuYN4GW3DyNo/edit?usp=sharing
--
+-ER図 https://drive.google.com/file/d/1X-m6ppyo0IhPOEpG6DR8MjRTmbWSnE0n/view?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)

@@ -4,6 +4,9 @@ class Public::GroupsController < ApplicationController
     def index
       @groups = Group.all
       @group  = Group.new
+      
+      @q     = Group.ransack(params[:q])
+      @q_groups = @q.result(distinct: true)
     end
   
     def show

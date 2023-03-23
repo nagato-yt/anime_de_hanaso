@@ -1,11 +1,10 @@
 class Public::PostsController < ApplicationController
   before_action :guest_signed_in?, except: [:show,:index]
+
   def index
     @post  = Post.new    
     @posts = Post.all
     
-    
-    #検索
     @q     = Post.ransack(params[:q])
     @q_posts= @q.result(distinct: true)
     
@@ -45,6 +44,8 @@ class Public::PostsController < ApplicationController
      flash[:notice]= "投稿を削除しました！"
     redirect_to public_posts_path
   end
+  
+  
   
   private
   def post_params

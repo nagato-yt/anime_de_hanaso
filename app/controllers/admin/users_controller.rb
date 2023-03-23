@@ -2,7 +2,9 @@ class Admin::UsersController < ApplicationController
    before_action :authenticate_admin!
   def index
     @users= User.all
-   
+    
+    @q     = User.ransack(params[:q])
+    @q_users = @q.result(distinct: true)
   end
 
   def destroy
@@ -24,4 +26,5 @@ class Admin::UsersController < ApplicationController
       redirect_to admin_users_path
     end
   end
+  
 end

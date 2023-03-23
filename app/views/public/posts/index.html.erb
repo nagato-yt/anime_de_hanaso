@@ -1,41 +1,53 @@
 <div class="container">
     <h2 class="text-center mt-5">みんなの投稿</h2>
     <div class="row mt-5">
-        <div class="col-lg-3 px-5 px-sm-0 mx-auto">
-            <div class="visible-lg sidebar_fixed">
+        <div class="col-lg-2 px-5 px-sm-0 mx-auto">
+            <div class="sidebar_fixed">
+                <div class="sidebar_fixed mb-5">
+                    <div>
+                        <%= search_form_for @q, url: public_posts_path do |f| %>
+                        <table>
+                            <tr><%= f.search_field :title_cont %></tr>
+                            <tr><%= f.submit 'タイトル検索' %></tr>
+                        </table>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar_fixed">
                 <!--投稿フォーム-->
                 <div class="post-form">
                     <h5 class="text-center">新規投稿</h5>
                     <%= render 'public/posts/post_form', post: @post %>
                 </div>
-                <!--タグ検索-->
-                <div class="tag_search">
-                    <div class="col"> 
-                        <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
-                            <% Tag.all.each do |t| %>
-                            
-                                <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
-                            <% end %>
-                            <%= submit_tag '検索' %>
-                        <% end %>
-                    </div>
-                </div>
-                <div class="col align-self-start" onselectstart="return false;" onmousedown="return false;">
-                    <%= image_tag 'keikoku' %>
-                </div>
             </div>
         </div>
         <!--一覧-->
-        <div class="col-sm-12 col-md-8 col-lg-8 px-5 px-sm-0 mx-auto">
-            <%= render 'public/posts/post_index', posts: @posts %>
-        </div> 
-    </div>
-    <div class="row justify-content-center w-100">
-        <div class="col align-self-end" onselectstart="return false;" onmousedown="return false;">
-            <div class="text-center">
-                <%= image_tag 'chuui' %>
+        <div class="col-sm-12 col-md-8 col-lg-7 px-5 px-sm-0 mx-auto">
+            <div>
+                <%= render 'public/posts/post_index', posts: @posts %>
             </div>
-            
+            <div class="col align-self-end" onselectstart="return false;" onmousedown="return false;">
+                <div class="text-center">
+                    <%= image_tag 'chuui' %>
+                </div>
+            </div>
+        </div> 
+        <div class="col-lg-2 px-5 px-sm-0 mx-auto">
+            <div class="tag_search sidebar_fixed">
+                <h4>タグ検索</h4>
+                <div class="col"> 
+                    <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+                     <%= submit_tag '検索' %>
+                        <% Tag.all.each do |t| %>
+                            <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+                        <% end %>
+                    <% end %>
+                    <div class="col align-self-start" onselectstart="return false;" onmousedown="return false;">
+                        <%= image_tag 'keikoku' %>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <% @groups.each do |group| %>
+            <% groups.each do |group| %>
                 <div class="card mt-3" style="width: 100%;">
                   <img class="bd-placeholder-img card-img-top"><div onselectstart="return false;" onmousedown="return false;"><%= image_tag group.get_profile_image, width: '150px', height: '150px' %></div></img>
                   <div class="card-body">

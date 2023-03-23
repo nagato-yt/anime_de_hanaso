@@ -1,8 +1,18 @@
 <div class="container">
     <div class="row">
-        <div class="col">
-            <div id="admin-user-scroll">
-                <% @users.each do |user| %>
+        <div class="col-sm col-md col-lg-2 px-5 px-sm-0 mx-auto mt-5">
+            <div class="sidebar_fixed">
+                <%= search_form_for @q, url: admin_users_path do |f| %>
+                <table>
+                    <tr><%= f.search_field :name_cont %></tr>
+                    <tr><%= f.submit 'ユーザー検索' %></tr>
+                </table>
+                <% end %>
+            </div>
+        </div>
+        <div class="ccol-sm col-md col-lg-8 px-sm-0 mx-auto">
+            <div class="admin-scroll">
+                <% @q_users.each do |user| %>
                     <div class="card bg-transparent mt-3">
                       <h5 class="card-header"><%= user.name %></h5>
                       <div class="card-body">

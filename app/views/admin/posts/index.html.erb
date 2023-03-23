@@ -1,8 +1,26 @@
 <div class="container mb-5 page-height">
     <div class="row">
-        <div class="col">
-            <div id="admin-user-scroll">
-                <% @posts.each do |post| %>
+        <div class="col-sm col-md col-lg-2 px-5 px-sm-0 mx-auto">
+            <div class="sidebar_fixed mt-5">
+                <%= search_form_for @q, url: admin_posts_path do |f| %>
+                <table>
+                    <tr><%= f.search_field :title_cont %></tr>
+                    <tr><%= f.submit '投稿検索' %></tr>
+                </table>
+                <% end %>
+            </div>
+            <div class="sidebar_fixed mt-5">
+                 <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+                 <%= submit_tag 'タグ検索' %>
+                    <% Tag.all.each do |t| %>
+                        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <div class="col-sm col-md col-lg-5 px-sm-0 mx-auto">
+            <div class="admin-scroll">
+                <% @q_posts.each do |post| %>
                     <div class="card bg-transparent mt-3">
                       <h5 class="card-header"><%= post.title %></h5>
                       <div class="card-body">

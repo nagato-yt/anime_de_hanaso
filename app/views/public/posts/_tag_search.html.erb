@@ -1,0 +1,12 @@
+<h4>タグ検索</h4>
+    <div class="col"> 
+        <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+         <%= submit_tag '検索' %>
+            <% Tag.all.each do |t| %>
+                <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+            <% end %>
+        <% end %>
+        <div class="col align-self-start" onselectstart="return false;" onmousedown="return false;">
+            <%= image_tag 'keikoku' %>
+        </div>
+    </div>

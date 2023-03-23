@@ -1,10 +1,10 @@
 class Public::GroupsController < ApplicationController
     before_action :guest_signed_in?, except: [:show,:index]
     before_action :ensure_correct_user, only: [:edit,:update,:all_destroy]
+    
     def index
       @groups = Group.all
       @group  = Group.new
-      
       @q     = Group.ransack(params[:q])
       @q_groups = @q.result(distinct: true)
     end
@@ -16,9 +16,6 @@ class Public::GroupsController < ApplicationController
     def edit
     end
   
-    def new
-      @group = Group.new
-    end
     
     def create
       @group = Group.new(group_params)

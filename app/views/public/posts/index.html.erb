@@ -4,14 +4,7 @@
         <div class="col-lg-2 px-5 px-sm-0 mx-auto mt-5">
             <div class="sidebar_fixed">
                 <div class="sidebar_fixed mb-5">
-                    <div>
-                        <%= search_form_for @q, url: public_posts_path do |f| %>
-                        <table>
-                            <tr><%= f.search_field :title_cont %></tr>
-                            <tr><%= f.submit 'タイトル検索' %></tr>
-                        </table>
-                        <% end %>
-                    </div>
+                    <%= render 'public/posts/title_search' %>
                 </div>
             </div>
             <div class="sidebar_fixed">
@@ -35,18 +28,7 @@
         </div> 
         <div class="col-lg-2 px-5 px-sm-0 mx-auto">
             <div class="tag_search sidebar_fixed">
-                <h4>タグ検索</h4>
-                <div class="col"> 
-                    <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
-                     <%= submit_tag '検索' %>
-                        <% Tag.all.each do |t| %>
-                            <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
-                        <% end %>
-                    <% end %>
-                    <div class="col align-self-start" onselectstart="return false;" onmousedown="return false;">
-                        <%= image_tag 'keikoku' %>
-                    </div>
-                </div>
+                <%= render 'public/posts/teg_search' %>
             </div>
         </div>
     </div>

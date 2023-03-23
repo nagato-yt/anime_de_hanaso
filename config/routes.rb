@@ -3,8 +3,8 @@ Rails.application.routes.draw do
     
   namespace :public do
    get 'warning' => 'homes#warning', as: 'warning'
-      resources :posts do
-          resources :post_comments, only: [:create, :destroy, :index, :show]
+      resources :posts, except: [:edit] do
+          resources :post_comments, only: [:create, :destroy]
           resources :favorites, only: [:index]
            resource :favorites, only: [:create, :destroy]
            
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
           end
       end
       resources :chats, only: [:show, :create]
-      resources :groups do
+      resources :groups, except: [:new] do
        get "join" => "groups#join"
        delete "all_destroy" => "groups#all_destroy"
        resources :group_messages, only: [:index, :create]
@@ -81,8 +81,8 @@ Rails.application.routes.draw do
   
   
   
-  
- # 顧客用
+ #devise 
+ # ユーザー用
  devise_for :users,skip: [:passwords], controllers: {
    registrations: "public/registrations",
    sessions: 'public/sessions'

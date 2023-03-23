@@ -4,7 +4,6 @@ class Public::PostsController < ApplicationController
   def index
     @post  = Post.new    
     @posts = Post.all
-    
     @q     = Post.ransack(params[:q])
     @q_posts= @q.result(distinct: true)
     
@@ -21,9 +20,6 @@ class Public::PostsController < ApplicationController
     @post= Post.find(params[:id])
     @post_comment = PostComment.new 
     
-  end
-
-  def edit
   end
   
   def create

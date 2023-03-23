@@ -1,0 +1,6 @@
+<%= search_form_for @q, url: public_groups_path do |f| %>
+    <table>
+        <tr><%= f.search_field :name_cont %></tr>
+        <tr><%= f.submit 'グループ検索' %></tr>
+    </table>
+<% end %>

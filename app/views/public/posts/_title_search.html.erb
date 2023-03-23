@@ -1,0 +1,6 @@
+<%= search_form_for @q, url: public_posts_path do |f| %>
+<table>
+    <tr><%= f.search_field :title_cont %></tr>
+    <tr><%= f.submit 'タイトル検索' %></tr>
+</table>
+<% end %>

@@ -4,5 +4,4 @@ class Public::HomesController < ApplicationController
     @groups = Group.all
   end
   
-  
 end

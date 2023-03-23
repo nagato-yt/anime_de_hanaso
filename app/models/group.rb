@@ -13,4 +13,8 @@ class Group < ApplicationRecord
     def get_profile_image
       (profile_image.attached?) ? profile_image : 'mizu.jpg'
     end
+    
+      def self.ransackable_attributes(auth_object = nil)
+         ["created_at", "id", "introduction", "name", "owner_id", "updated_at"]
+      end
 end

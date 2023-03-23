@@ -1,7 +1,6 @@
 class Public::UsersController < ApplicationController
    before_action :guest_signed_in?, except: [:show,:index]
    
-  # before_action :ensure_normal_user, only: [:edit]
   def show
     @user= User.find(params[:id])
   end 
@@ -38,13 +37,10 @@ class Public::UsersController < ApplicationController
   end
 
   private
-    def ensure_normal_user
-      redirect_to root_path
-    end
     
     def user_params
       params.require(:user).permit(:name,:introduction,:profile_image)
     end
-
+  
 end
 

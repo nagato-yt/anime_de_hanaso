@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
     root to: 'public/homes#top'
-   
     
   namespace :public do
+   get 'warning' => 'homes#warning', as: 'warning'
       resources :posts do
           resources :post_comments, only: [:create, :destroy, :index, :show]
           resources :favorites, only: [:index]
            resource :favorites, only: [:create, :destroy]
+           
+           #検索
+           collection do
+             get 'search'
+           end
       end
       
       resources :users do
@@ -23,31 +28,54 @@ Rails.application.routes.draw do
           get 'users/:id/unsubscribe' =>'users#unsubscribe', as: 'unsubscribe'
           patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
           
+          # 検索
+          collection do
+            get 'search'
+          end
       end
       resources :chats, only: [:show, :create]
       resources :groups do
        get "join" => "groups#join"
        delete "all_destroy" => "groups#all_destroy"
        resources :group_messages, only: [:index, :create]
+       
+       collection do
+         get 'search'
+       end
       end
   end
   
   namespace :admin do
    root to: 'homes#top'
    
-    resources :tags, only: [:index, :create, :edit, :update]
+    resources :tags, only: [:index, :create, :edit, :update] do
+     collection do
+      get 'search'
+     end
+    end
     resources :users, only: [:index,:show,:destroy] do
      # 退会機能
       get 'users/:id/unsubscribe' =>'users#unsubscribe', as: 'unsubscribe'
       patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+      
+      collection do
+        get 'search'
+      end
     end
     resources :posts, only: [:index,:show, :destroy] do 
      resources :post_comments, only: [:index,:show, :destroy]
+     collection do
+      get 'search'
+     end
     end
     resources :groups, only: [:index,:show, :destroy] do
        get "join" => "groups#join"
        delete "all_destroy" => "groups#all_destroy"
         resources :group_messages, only: [:index, :create]
+        
+        collection do
+          get 'search'
+        end
     end
   end
   

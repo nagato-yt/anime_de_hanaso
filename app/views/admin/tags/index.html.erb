@@ -15,19 +15,24 @@
             <% end %>
         </div>
     </div>
-    <div class="col-sm col-md col-lg-5 align-items-center">
-        <table class= "table">
-            <thead>
-                <th>タグネーム</th>
-            </thead>
-            <tbody>
-                <% @tags.each do |tag| %>
-                <tr>
-                    <td><%= tag.name %></td>
-                    <td><%= link_to '編集', edit_admin_tag_path(tag) %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
+    <div class="row justify-content-center mt-4">
+        <div class="col-sm col-md col-lg-5 px-5 px-sm-0 mx-auto">
+            <div class="admin-scroll">
+                <table class= "table">
+                    <thead>
+                        <th>タグネーム</th>
+                    </thead>
+                    <tbody>
+                        <% @tags.each do |tag| %>
+                        <tr>
+                            <td><%= tag.name %></td>
+                            <td><%= link_to '編集', edit_admin_tag_path(tag) %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+    
 </div>

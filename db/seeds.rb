@@ -12,15 +12,18 @@ Admin.create!(
    password: ENV['ADMIN_PASSWORD'], 
 )
 
-10.times do
-  user = User.create!(
-    name: Faker::JapaneseMedia::StudioGhibli.character,
-    introduction: 'こんにちは、アニメが好きです。よろしくお願いします。たくさん話しましょう！',
-    email: Faker::Internet.email,
-    password: ENV['USER_PASSWORD'],
-    password_confirmation: ENV['USER_PASSWORD'],
-  )
-  puts "\"#{user.name}\" has created!"
+1.times do
+     require 'csv'
+     csv = CSV.read('db/seeds/users.csv')
+     csv.each do |user|
+     user = User.create!(
+        name: user[1],
+        email: user[3],
+        introduction: user[2],
+        password: ENV['USER_PASSWORD']
+     )
+    puts "\"#{user.name}\" has created!"
+  end
 end
 
 1.times do 
@@ -30,17 +33,17 @@ end
    post = Post.create!(
     title: title[1],
     body: 'このアニメがとても面白かったです！どのキャラクターが一番好きですか？',
-    user_id: rand(1..10)
+    user_id: rand(1..16)
   )
   puts "\"#{post.title}\" has created!"
   end
 end
 
-10.times do
+16.times do
     
     relationship = Relationship.create!(
-        followed_id: rand(1..10),
-        follower_id: rand(1..10)
+        followed_id: rand(1..16),
+        follower_id: rand(1..16)
         )
         puts "\"#{relationship.id}\" has created!"
 end
@@ -52,7 +55,7 @@ end
    tag = Tag.create!(
         name: t[1]
         )
-        puts "\"#{ tag.id }\" has created!"
+        puts "\"#{ tag.name }\" has created!"
     end
 end
 
@@ -70,23 +73,27 @@ end
     
     like = Favorite.create(
         post_id: rand(1..30),
-        user_id: rand(1..10)
+        user_id: rand(1..16)
         )
          puts "\"#{ like.id }\" has created!"
 end
 
-10.times do
+1.times do
+    require 'csv'
+    csv = CSV.read('db/seeds/groups.csv')
+    csv.each do |group|
     group = Group.create!(
-        name: Faker::JapaneseMedia::StudioGhibli.movie,
+        name: group[1],
         introduction: '楽しくみんなで話しましょう！',
-        owner_id: rand(1..10)
+        owner_id: rand(1..16)
         )
-        puts "\"#{ group.id }\" has created!"
+        puts "\"#{ group.name }\" has created!"
+    end
 end
 
 20.times do
     join = GroupUser.create(
-        user_id: rand(1..10),
+        user_id: rand(1..16),
         group_id: rand(1..10)
         )
      puts "\"#{ join.id }\" has created!"

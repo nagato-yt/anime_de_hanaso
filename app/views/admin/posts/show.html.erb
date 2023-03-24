@@ -13,7 +13,7 @@
                 </p>
                 <p class="card-text">コメント数 <%= @post.post_comments.count %></p>
                 <p class="card-text">いいね数 <%= @post.favorites.count %></p>
-                <p class="card-text">投稿日時  <%= @post.created_at %></p>
+                <p class="card-text">投稿日時  <%= @post.created_at.to_s(:datetime_jp) %></p>
                 <p class="card-text"><%= link_to '投稿削除', admin_post_path(@post), method: :delete %></p>
               </div>
             </div>
@@ -23,26 +23,6 @@
 
 <div class="row justify-content-center">
     <div class="col-5 scroll">
-        <% @post.post_comments.each do |post_comment| %>
-            <div class="card mt-2" style="width: 80%;">
-              <div class="card-body">
-                <p class="card-text">
-                    <table class="table table-borderless">
-                         <tr class="justify-content-around">
-                            <th class="col-2">コメントユーザー</th>
-                            <th class="col-2"><%= post_comment.user.name %></th>
-                        </tr>
-                        <tr class="justify-content-around">
-                            <th class="col-2">コメント</th>
-                            <th class="col-2"><%= post_comment.comment %></th>
-                        </tr>
-                        <tr class="justify-content-around">
-                           <th class="col-2"><%= link_to 'コメント削除',admin_post_post_comment_path(post_comment),method: :delete %></th>
-                        </tr>
-                    </table>
-                </p>
-              </div>
-            </div>
-        <% end %>
+        <%= render 'admin/posts/comment', post: @post %>
     </div>
 </div>

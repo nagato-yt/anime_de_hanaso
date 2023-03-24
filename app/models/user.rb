@@ -52,6 +52,7 @@ class User < ApplicationRecord
     find_or_create_by(email: 'dazai_osamu@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "太宰 治(ゲストユーザー)"
+      user.introduction = "こんにちは、私の代表作は「人間失格」です。教科書とは結構仲良しですよ。"
     end
    end
    

@@ -1,7 +1,7 @@
 <div class="container">
     <h2 class= "text-center mt-5">ユーザープロフィール</h2>
         <div class="row mt-5">
-            <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+            <div class="col-sm-12 col-md-8 col-lg-8 px-5 px-sm-0 mx-auto">
                 <table class='table table-borderless'>
                   <!--<tr>%= image_tag user.get_profile_image, size:'100x100' %></tr>-->
                   <tr>
@@ -23,6 +23,10 @@
                   <tr>
                     <th>フォロワー</th>
                     <th><%= @user.followers.count %></th>
+                  </tr>
+                  <tr>
+                      <th>登録日時</th>
+                      <th><%= @user.created_at.to_s(:datetime_jp) %></th>
                   </tr>
                   <tr>
                       <th>ユーザー削除</th>

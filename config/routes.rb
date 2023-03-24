@@ -5,7 +5,6 @@ Rails.application.routes.draw do
    get 'warning' => 'homes#warning', as: 'warning'
       resources :posts, except: [:edit] do
           resources :post_comments, only: [:create, :destroy]
-          resources :favorites, only: [:index]
            resource :favorites, only: [:create, :destroy]
            
            #検索

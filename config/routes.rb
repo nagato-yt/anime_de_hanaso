@@ -24,8 +24,8 @@ Rails.application.routes.draw do
               get :favorites
           end
           # 退会機能
-          get 'users/:id/unsubscribe' =>'users#unsubscribe', as: 'unsubscribe'
-          patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+          get 'unsubscribe' =>'users#unsubscribe', as: 'unsubscribe'
+          patch 'withdrawal' => 'users#withdrawal', as: 'withdrawal'
           
           # 検索
           collection do
@@ -52,25 +52,23 @@ Rails.application.routes.draw do
       get 'search'
      end
     end
-    resources :users, only: [:index,:show,:destroy] do
+    resources :users, only: [:index,:show] do
      # 退会機能
-      get 'users/:id/unsubscribe' =>'users#unsubscribe', as: 'unsubscribe'
-      patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+      get 'unsubscribe' =>'users#unsubscribe', as: 'unsubscribe'
+      patch 'withdrawal' => 'users#withdrawal', as: 'withdrawal'
       
       collection do
         get 'search'
       end
     end
     resources :posts, only: [:index,:show, :destroy] do 
-     resources :post_comments, only: [:index,:show, :destroy]
+     resources :post_comments, only: [:destroy]
      collection do
       get 'search'
      end
     end
     resources :groups, only: [:index,:show, :destroy] do
-       get "join" => "groups#join"
-       delete "all_destroy" => "groups#all_destroy"
-        resources :group_messages, only: [:index, :create]
+        resources :group_messages, only: [:index]
         
         collection do
           get 'search'

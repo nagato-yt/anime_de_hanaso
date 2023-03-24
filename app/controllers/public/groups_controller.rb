@@ -25,8 +25,8 @@ class Public::GroupsController < ApplicationController
           flash[:notice]= "グループを作成しました！"
           redirect_to public_groups_path
         else
-          flash[:notice]= "空欄では作成できません！"
-          redirect_to request.referer
+          flash[:notice]= "空欄、200字以上では作成できません！"
+            redirect_to request.referer
         end
     end
     
@@ -35,7 +35,7 @@ class Public::GroupsController < ApplicationController
          flash[:notice]= "グループを編集しました！"
         redirect_to public_group_path(@group)
       else
-         flash[:notice]= "空欄で編集はできません！"
+         flash[:notice]= "空欄、200字以上で編集はできません！"
         render "edit"
       end
     end
@@ -70,7 +70,7 @@ class Public::GroupsController < ApplicationController
     end
     
     def ensure_correct_user
-      @group = Group.find(params[:id])
+      @group = Group.find(params[:group_id])
       unless @group.owner_id == current_user.id
         flash[:notice]= "グループのオーナーで無いのでこの操作はできません。"
         redirect_to public_groups_path

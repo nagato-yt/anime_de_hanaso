@@ -14,7 +14,7 @@
                 <p class="card-text">コメント数 <%= @post.post_comments.count %></p>
                 <p class="card-text">いいね数 <%= @post.favorites.count %></p>
                 <p class="card-text">投稿日時  <%= @post.created_at %></p>
-                <p class="card-text"><%= link_to '投稿削除', public_post_path(@post), method: :delete %></p>
+                <p class="card-text"><%= link_to '投稿削除', admin_post_path(@post), method: :delete %></p>
               </div>
             </div>
         </div>

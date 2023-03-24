@@ -9,7 +9,10 @@
           <i class="fas fa-comments"></i> 見る
         <% end %>
       </a>
-      <a><%= render "public/favorites/btn", post: post %></a>
+      <div style="display: inline-block">
+        <div class=<%="favorite-" + post.id.to_s  %>><%= render "public/favorites/btn", post: post %></div>
+      </div>
+      
       <p style="text-align: right"><%= post.created_at.strftime("%Y年%m月%d日") %></p>
     </div>
   </div>

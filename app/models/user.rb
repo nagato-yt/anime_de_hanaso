@@ -30,6 +30,9 @@ class User < ApplicationRecord
     has_many :followings, through: :relationships, source: :followed
     has_many :followers, through: :reverse_of_relationships, source: :follower
     
+    
+    validates :name,presence: true, uniqueness: true
+    
     #した
     def follow(user)
       relationships.create(followed_id: user.id)
@@ -74,6 +77,7 @@ class User < ApplicationRecord
     def get_profile_image
       (profile_image.attached?) ? profile_image : 'no_image.jpg'
     end
-  
+    
+    
   
 end

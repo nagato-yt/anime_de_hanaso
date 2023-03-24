@@ -5,6 +5,10 @@ class Post < ApplicationRecord
     has_many :post_tag_relations, dependent: :destroy
     has_many :tags, through: :post_tag_relations, dependent: :destroy
     
+    
+    validates :title,presence: true, length: { in: 1..50 }
+    validates :body,presence: true, length: { in: 1..200 }
+    
     def favorited_by?(user)
          favorites.exists?(user_id: user.id)
     end

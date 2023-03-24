@@ -29,7 +29,7 @@ class Public::PostsController < ApplicationController
      flash[:notice]= "投稿しました！"
       redirect_to request.referer
    else
-     flash[:notice]= "空欄では投稿できません！"
+     flash[:notice]= "空欄又は、200字以上では投稿できません！"
      redirect_to request.referer
    end
   end

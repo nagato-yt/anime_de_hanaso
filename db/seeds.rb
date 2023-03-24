@@ -12,7 +12,7 @@ Admin.create!(
    password: ENV['ADMIN_PASSWORD'], 
 )
 
-1.times do
+
      require 'csv'
      csv = CSV.read('db/seeds/users.csv')
      csv.each do |user|
@@ -23,32 +23,31 @@ Admin.create!(
         password: ENV['USER_PASSWORD']
      )
     puts "\"#{user.name}\" has created!"
-  end
-end
+    end
 
-1.times do 
+
+
     require 'csv'
     csv = CSV.read('db/seeds/posts.csv')
     csv.each do |title|
-   post = Post.create!(
-    title: title[1],
-    body: 'このアニメがとても面白かったです！どのキャラクターが一番好きですか？',
-    user_id: rand(1..16)
-  )
-  puts "\"#{post.title}\" has created!"
-  end
-end
-
-16.times do
-    
+        post = Post.create!(
+         title: title[1],
+         body: 'このアニメがとても面白かったです！どのキャラクターが一番好きですか？',
+         user_id: rand(1..16)
+     )
+    puts "\"#{post.title}\" has created!"
+    end
+  
+    require 'csv'
+    csv = CSV.read('db/seeds/relationships.csv')
+    csv.each do |relationship|
     relationship = Relationship.create!(
-        followed_id: rand(1..16),
-        follower_id: rand(1..16)
-        )
-        puts "\"#{relationship.id}\" has created!"
-end
+        followed_id: relationship[0],
+        follower_id: relationship[1]
+     )
+    puts "\"#{relationship.id}\" has created!"
+    end
 
-1.times do
     require 'csv'
     csv = CSV.read('db/seeds/tags.csv')
     csv.each do |t|
@@ -57,45 +56,47 @@ end
         )
         puts "\"#{ tag.name }\" has created!"
     end
-end
 
-20.times do
-    
+    require 'csv'
+    csv = CSV.read('db/seeds/posttags.csv')
+    csv.each do |tag|
     like = PostTagRelation.create(
-        post_id: rand(1..30),
-        tag_id: rand(1..16)
+        post_id: tag[0],
+        tag_id:  tag[1]
         )
          puts "\"#{ like.id }\" has created!"
-end
+    end
 
 
-20.times do
-    
+
+    require 'csv'
+    csv = CSV.read('db/seeds/posttags.csv')
+    csv.each do |like|
     like = Favorite.create(
-        post_id: rand(1..30),
-        user_id: rand(1..16)
+        post_id: like[0],
+        user_id: like[1]
         )
          puts "\"#{ like.id }\" has created!"
-end
+    end
 
-1.times do
+
     require 'csv'
     csv = CSV.read('db/seeds/groups.csv')
     csv.each do |group|
     group = Group.create!(
         name: group[1],
         introduction: '楽しくみんなで話しましょう！',
-        owner_id: rand(1..16)
+        owner_id: group[0]
         )
         puts "\"#{ group.name }\" has created!"
     end
-end
 
-20.times do
+    require 'csv'
+    csv = CSV.read('db/seeds/join.csv')
+    csv.each do |join|
     join = GroupUser.create(
-        user_id: rand(1..16),
-        group_id: rand(1..10)
+        user_id: join[0],
+        group_id: join[1]
         )
-     puts "\"#{ join.id }\" has created!"
-end
-
+      puts "\"#{ join.id }\" has created!"
+    end

@@ -1,6 +1,7 @@
 class Public::GroupsController < ApplicationController
     before_action :guest_signed_in?, except: [:show,:index]
-    before_action :ensure_correct_user, only: [:edit,:update,:all_destroy]
+    before_action :ensure_correct_user, only: [:edit,:update]
+    before_action :all_destroy_group, only: [:all_destroy]
     
     def index
       @groups = Group.all
@@ -70,10 +71,19 @@ class Public::GroupsController < ApplicationController
     end
     
     def ensure_correct_user
+      @group = Group.find(params[:id])
+      unless @group.owner_id == current_user.id
+        flash[:notice]= "グループのオーナーで無いのでこの操作はできません。"
+        redirect_to public_groups_path
+      end
+    end
+    
+    def all_destroy_group
       @group = Group.find(params[:group_id])
       unless @group.owner_id == current_user.id
         flash[:notice]= "グループのオーナーで無いのでこの操作はできません。"
         redirect_to public_groups_path
       end
     end
+    
 end

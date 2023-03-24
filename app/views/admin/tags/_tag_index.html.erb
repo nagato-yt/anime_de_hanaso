@@ -1,0 +1,13 @@
+<table class= "table">
+    <thead>
+        <th>タグネーム</th>
+    </thead>
+    <tbody>
+        <% tags.each do |tag| %>
+        <tr>
+            <td><%= tag.name %></td>
+            <td><%= link_to '編集', edit_admin_tag_path(tag) %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

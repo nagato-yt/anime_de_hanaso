@@ -18,16 +18,11 @@
                   </tr>
                   <tr>
                     <th>フォロー</th>
-                    <th><%= link_to @user.followings.count, public_user_followings_path(@user) %></th>
+                    <th><%= @user.followings.count%></th>
                   </tr>
                   <tr>
                     <th>フォロワー</th>
-                    <th><%= link_to @user.followers.count, public_user_followers_path(@user) %></th>
-                  </tr>
-                  <tr>
-                    <th>
-                      <%= link_to 'いいね一覧',favorites_public_user_path(@user), class: "btn btn-outline-info" %>
-                    </th>
+                    <th><%= @user.followers.count %></th>
                   </tr>
                   <tr>
                       <th>ユーザー削除</th>

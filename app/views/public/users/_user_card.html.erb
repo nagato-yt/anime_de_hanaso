@@ -1,6 +1,6 @@
 <% users.each do |user| %>
     <div class="card mt-3">
-      <div class="bd-placeholder-img card-img-top"><%= image_tag user.get_profile_image, size:'150x150',class: "rounded mx-auto d-block" %></div>
+      <div class="bd-placeholder-img card-img-top" onselectstart="return false;" onmousedown="return false;"><%= image_tag user.get_profile_image, size:'150x150',class: "rounded mx-auto d-block" %></div>
         <div class="card-body">
           <h5 class="card-title"><%= user.name %></h5>
           <p class="card-text"><%= user.introduction %></p>

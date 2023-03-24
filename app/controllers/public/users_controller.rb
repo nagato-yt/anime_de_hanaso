@@ -9,9 +9,13 @@ class Public::UsersController < ApplicationController
   end
   
   def update
-    @user.update(user_params)
-    flash[:notice]= "ユーザー情報を変更しました！"
-    redirect_to public_user_path(@user)
+    if @user.update(user_params)
+     flash[:notice]= "ユーザー情報を変更しました！"
+     redirect_to public_user_path(@user)
+    else
+      flash[:notice]= "空欄では保存できません"
+     render 'edit'
+    end
   end
 
   def index

@@ -7,8 +7,8 @@ class Group < ApplicationRecord
     
     belongs_to :user,optional: true
     
-    validates :name, presence: true
-    validates :introduction, presence: true
+    validates :name, presence: true,length: { in: 1..30 }
+    validates :introduction, presence: true,length: { in: 1..200 }
     
     def get_profile_image
       (profile_image.attached?) ? profile_image : 'mizu.jpg'

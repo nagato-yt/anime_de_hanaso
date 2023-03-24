@@ -8,8 +8,11 @@ class Public::GroupMessagesController < ApplicationController
   
   def create
     @message= GroupMessage.new(message_params)
-    @message.save
-    redirect_to request.referer
+    if @message.save
+     redirect_to request.referer
+    else
+      render 'index'
+    end
   end
   
   

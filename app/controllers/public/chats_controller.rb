@@ -19,7 +19,10 @@ class Public::ChatsController < ApplicationController
   end
   def create
     @chat = current_user.chats.new(chat_params)
-    @chat.save
+    if @chat.save
+    else
+      render 'show'
+    end
     # redirect_to request.referer
   end
 

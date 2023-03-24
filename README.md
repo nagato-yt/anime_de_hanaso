@@ -40,9 +40,9 @@
 
 
 ## 設計書
--アプリケーション詳細設計書 https://docs.google.com/spreadsheets/d/16Qcv5xAVdyMZ3RWLdgNHj-Jr8zsPONVo/edit?usp=sharing&ouid=100470540592191778476&rtpof=true&sd=true
--テーブル定義書 https://docs.google.com/spreadsheets/d/1WYc-s5PwsD-jWxLw5DcvbD8F4rE3M8NmuYN4GW3DyNo/edit?usp=sharing
--ER図 https://drive.google.com/file/d/1X-m6ppyo0IhPOEpG6DR8MjRTmbWSnE0n/view?usp=sharing
+- アプリケーション詳細設計書https://docs.google.com/spreadsheets/d/16Qcv5xAVdyMZ3RWLdgNHj-Jr8zsPONVo/edit?usp=sharing&ouid=100470540592191778476&rtpof=true&sd=true
+- テーブル定義書https://docs.google.com/spreadsheets/d/1WYc-s5PwsD-jWxLw5DcvbD8F4rE3M8NmuYN4GW3DyNo/edit?usp=sharing
+- ER図https://drive.google.com/file/d/1X-m6ppyo0IhPOEpG6DR8MjRTmbWSnE0n/view?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)

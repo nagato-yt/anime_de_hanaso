@@ -13,7 +13,7 @@ Rails.application.routes.draw do
            end
       end
       
-      resources :users do
+      resources :users, except: [:new, :destroy] do
          #フォロー機能
           post 'follow' => 'relationships#follow',as: 'follow'
           delete 'unfollow' => 'relationships#unfollow', as: 'unfollow'

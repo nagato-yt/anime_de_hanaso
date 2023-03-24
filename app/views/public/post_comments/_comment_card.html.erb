@@ -7,7 +7,7 @@
         <% end %>
     </h6>
     <p class="card-text"><%= comment.comment %></p>
-    <p class="align-self-end"><%= comment.created_at %>/<%= link_to '削除', public_post_post_comment_path(post, comment), method: :delete, remote: true %></p>
+    <p class="align-self-end"><%= comment.created_at.to_s(:datetime_jp) %>/<%= link_to '削除', public_post_post_comment_path(post, comment), method: :delete, remote: true %></p>
   </div>
 </div>
 <% end %>

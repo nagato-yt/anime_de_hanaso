@@ -3,8 +3,12 @@ class Admin::TagsController < ApplicationController
     
     def create
         @tag = Tag.new(tag_params)
-        @tag.save
-        redirect_to request.referer
+        if @tag.save
+         redirect_to request.referer
+        else
+         flash[:notice]= "空欄で登録はできません"
+         redirect_to request.referer
+        end
     end
     
     def index

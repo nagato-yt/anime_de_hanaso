@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
    before_action :guest_signed_in?, except: [:show,:index]
-   before_action :set_user, only: [:show, :edit, :update, :favorites, :withdrawal]
+   before_action :set_user, only: [:show, :edit, :update, :favorites]
    
   def show
   end 
@@ -30,6 +30,7 @@ class Public::UsersController < ApplicationController
   end
   
   def withdrawal
+    @user= User.find(params[:user_id])
     @user.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"

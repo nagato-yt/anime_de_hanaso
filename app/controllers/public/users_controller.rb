@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
    before_action :guest_signed_in?, except: [:show,:index]
    before_action :set_user, only: [:show, :edit, :update, :favorites]
+   before_action :is_matching_login_user, only: [:edit, :update]
    
   def show
   end 
@@ -45,6 +46,13 @@ class Public::UsersController < ApplicationController
     
     def set_user
       @user = User.find(params[:id])
+    end
+    
+    def is_matching_login_user
+      user = User.find(params[:id])
+     unless user.id == current_user.id
+      redirect_to root_path
+     end
     end
   
 end

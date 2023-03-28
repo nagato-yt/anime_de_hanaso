@@ -7,11 +7,11 @@ class Admin::PostsController < ApplicationController
     @q_posts= @q.result(distinct: true)
     
     if params[:tag_ids]
-      @posts = []
+      @q_posts = []
       params[:tag_ids].each do |key, value|
-        @posts += Tag.find_by(name: key).posts if value == "1"
+        @q_posts += Tag.find_by(name: key).posts if value == "1"
       end
-      @posts.uniq!
+      @q_posts.uniq!
     end
   end
 

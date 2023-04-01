@@ -49,7 +49,7 @@
 - GitHub https://github.com/nagato-yt/anime_de_hanaso
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Amazon Linux(Karoo)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery

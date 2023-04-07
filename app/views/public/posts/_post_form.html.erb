@@ -5,16 +5,13 @@
     </div>
     <div class="form-group">
         <%= f.label :body %>
-        <%= f.text_field :body, class: "form-control" %>
+        <%= f.text_area :body, class: "form-control" %>
     </div>
     <div class="form-group">
         <table>
             <th>つけるタグ</th><th><%= f.submit '作成する', class: 'btn btn-success' %> </th>
             <%= f.collection_check_boxes(:tag_ids,Tag.all, :id, :name) do |tag| %>
-            <tr>
-                <td><%= tag.check_box class: 'form-check-input' %></td>
-                <td><%= tag.text %></td>
-            </tr>
+             <tr><li style='list-style:none;'><%= tag.check_box class: 'form-check-input' %><%= tag.text %></li></tr>
             <% end %>
         </table>
     </div>
